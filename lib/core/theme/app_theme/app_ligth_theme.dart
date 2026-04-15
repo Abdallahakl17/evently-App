@@ -1,174 +1,113 @@
 import 'package:enently/core/theme/app_color/app_colors_ligth.dart';
+import 'package:enently/core/theme/app_text/app_text.dart';
+import 'package:enently/core/theme/app_text/app_text_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
- 
-final ThemeData lightTheme = ThemeData(
-  brightness: Brightness.light,
-  primaryColor: AppColorsLigth.primaryColor,
-  scaffoldBackgroundColor: AppColorsLigth.primaryColor,
-  fontFamily: 'JannaLT',
 
-  tabBarTheme: TabBarThemeData(
-    dividerColor: Colors.transparent,
-    indicator: BoxDecoration(
-      color: AppColorsLigth.gold,
-      borderRadius: BorderRadius.circular(12.r),
-    ),
-    labelColor: AppColorsLigth.black,
-    unselectedLabelColor: AppColorsLigth.white,
-    labelStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-    unselectedLabelStyle: TextStyle(
-      fontSize: 16.sp,
-      fontWeight: FontWeight.bold,
-    ),
-    indicatorSize: TabBarIndicatorSize.tab,
-  ),
+final lightColorScheme = ColorScheme.light(
+  primary: LightAppColors.mainColor,
+  secondary: LightAppColors.stroke,
+
+  surface: LightAppColors.background,
+  surfaceContainerHighest: LightAppColors.inputs,
+
+  error: LightAppColors.red,
+
+  onSurface: LightAppColors.mainText,
+  onSurfaceVariant: LightAppColors.secondaryText,
+
+  onPrimary: LightAppColors.inputs,
+  outline: LightAppColors.disable,
+);
+
+final ThemeData lightTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.light,
+
+  colorScheme: lightColorScheme,
+
+  scaffoldBackgroundColor: lightColorScheme.surface,
 
   appBarTheme: AppBarTheme(
+    backgroundColor: lightColorScheme.surface,
+    foregroundColor: lightColorScheme.onSurface,
     centerTitle: true,
-    elevation: 0,
-    backgroundColor: AppColorsLigth.primaryColor,
-    iconTheme: IconThemeData(color: AppColorsLigth.gold, size: 24.sp),
-    actionsIconTheme: IconThemeData(color: AppColorsLigth.gold, size: 24.sp),
-    titleTextStyle: TextStyle(
-      fontSize: 20.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.gold,
-      fontFamily: 'JannaLT',
-    ),
   ),
 
-  iconTheme: IconThemeData(color: AppColorsLigth.gold, size: 20.sp),
+  dividerColor: lightColorScheme.secondary,
 
-  textTheme: TextTheme(
-    headlineMedium: TextStyle(
-      fontSize: 24.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.gold,
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: lightColorScheme.primary,
+    foregroundColor: lightColorScheme.onPrimary,
+  ),
+
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: lightColorScheme.surfaceContainerHighest,
+    selectedItemColor: lightColorScheme.primary,
+    unselectedItemColor: lightColorScheme.onSurfaceVariant,
+    type: BottomNavigationBarType.fixed,
+  ),
+
+  inputDecorationTheme: InputDecorationTheme(
+    hintStyle: TextStyle(
+      fontSize: 12.sp,
+      color: lightColorScheme.onSurfaceVariant,
     ),
-    headlineSmall: TextStyle(
-      fontSize: 20.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.gold,
+    filled: true,
+    fillColor: lightColorScheme.surfaceContainerHighest,
+
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+      borderSide: BorderSide(color: lightColorScheme.secondary),
     ),
-    labelLarge: TextStyle(
-      fontSize: 24.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.black,
+
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+      borderSide: BorderSide(color: lightColorScheme.primary),
     ),
-    labelMedium: TextStyle(
-      fontSize: 16.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.white,
+
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+
+      borderSide: BorderSide(color: lightColorScheme.error),
     ),
-    labelSmall: TextStyle(
-      fontSize: 14.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.black,
+
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+
+      borderSide: BorderSide(color: lightColorScheme.error),
     ),
-    titleMedium: TextStyle(
-      fontSize: 20.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.white,
-    ),
-    bodyLarge: TextStyle(
-      fontSize: 20.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.primaryColor,
-    ),
-    bodyMedium: TextStyle(
-      fontSize: 20.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.primaryColor,
-    ),
-    titleLarge: TextStyle(
-      fontSize: 36.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.white,
-    ),
-    displayLarge: TextStyle(
-      fontSize: 36.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.white,
-    ),
+
+    prefixIconColor: lightColorScheme.outline,
+    suffixIconColor: lightColorScheme.outline,
   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: AppColorsLigth.gold,
-      foregroundColor: AppColorsLigth.primaryColor,
-      textStyle: TextStyle(
-        fontSize: 20.sp,
-        fontWeight: FontWeight.w400,
-        color: AppColorsLigth.white,
+      backgroundColor: lightColorScheme.primary,
+      foregroundColor: lightColorScheme.onPrimary,
+
+      textStyle: AppTextStyles.titleMedium.copyWith(
+        color: lightColorScheme.onPrimary,
       ),
+
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-      padding: EdgeInsets.all(16.r),
     ),
   ),
 
-  inputDecorationTheme: InputDecorationTheme(
-    filled: true,
-    fillColor: Colors.transparent,
-    prefixIconColor: AppColorsLigth.gold,
-    hintStyle: TextStyle(
-      fontSize: 16.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.white,
-      fontFamily: 'JannaLT',
-    ),
-    contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.r),
-      borderSide: BorderSide(color: AppColorsLigth.gold, width: 1),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.r),
-      borderSide: BorderSide(color: AppColorsLigth.gold, width: 1),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.r),
-      borderSide: BorderSide(color: AppColorsLigth.gold, width: 1),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.r),
-      borderSide: BorderSide(color: Colors.red, width: 1),
-    ),
-    focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.r),
-      borderSide: BorderSide(color: Colors.red, width: 1),
+  cardTheme: CardThemeData(
+    color: lightColorScheme.surfaceContainerHighest,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.r),
+      side: BorderSide(color: lightColorScheme.secondary),
     ),
   ),
 
-  listTileTheme: ListTileThemeData(
-    titleTextStyle: TextStyle(
-      fontSize: 20.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.white,
-    ),
-    subtitleTextStyle: TextStyle(
-      fontSize: 14.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.white,
-    ),
-    tileColor: Colors.transparent,
-    textColor: AppColorsLigth.white,
-    iconColor: AppColorsLigth.white,
-    leadingAndTrailingTextStyle: TextStyle(
-      fontSize: 20.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColorsLigth.white,
-    ),
-    contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-  ),
+  iconTheme: IconThemeData(color: lightColorScheme.primary),
 
-  dividerTheme: DividerThemeData(
-    endIndent: 55.w,
-    indent: 55.w,
-    color: AppColorsLigth.white,
-  ),
-  progressIndicatorTheme: ProgressIndicatorThemeData(
-    color: AppColorsLigth.gold,
-    circularTrackColor: AppColorsLigth.gold.withAlpha(50),
-  ),
+  textTheme: AppTextThemeBuilder.build(lightColorScheme),
 );
+
+
+// 000F30 dark
+// F4F7FF ligth

@@ -1,43 +1,39 @@
 import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   static final FirebaseAuth auth = FirebaseAuth.instance;
 
- static Future signUp(String email, String password) async {
+  static Future<UserCredential?> sigUP(String email, String password) async {
     try {
-      await auth.createUserWithEmailAndPassword(
+      final userCredential = await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      log("Account created successfully");
+
+      return userCredential;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        log("Weak password");
-      } else if (e.code == 'email-already-in-use') {
-        log("Email already exists");
-      }
+      log("SignIn error: ${e.code}");
+      return null;
     }
   }
- static Future signIn(String email, String password) async {
-  try {
-  final user =    await auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    log("Login success"); return user;
 
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found') {
-      log("User not found");
-    } else if (e.code == 'wrong-password') {
-      log("Wrong password");
-    }  return null;
+  static Future<UserCredential?> signIn(String email, String password) async {
+    try {
+      final userCredential = await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      log("SignIn error: ${e.code}");
+      return null;
+    }
   }
-}
-static Future signOut() async {
-  await FirebaseAuth.instance.signOut();    log("Logged out");
 
-}
+  static Future<void> signOut() async {
+    await auth.signOut();
+    log("Logged out");
+  }
 }

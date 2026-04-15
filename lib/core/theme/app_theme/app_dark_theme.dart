@@ -1,124 +1,137 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:ishraq/core/theme/app_color/app_color_dark.dart';
- 
-// final ThemeData darkTheme = ThemeData(
-//   brightness: Brightness.dark,
-//   primaryColor: AppColorsDark.primaryColor,
-//   scaffoldBackgroundColor: AppColorsDark.primaryColor,
-//   fontFamily: 'JannaLT',
-//   appBarTheme: AppBarTheme(
-//     elevation: 0,
-//     backgroundColor: AppColorsDark.primaryColor,
-//     iconTheme: IconThemeData(
-//       color: AppColorsDark.white,
-//       size: 24.sp,
-//     ),
-//     actionsIconTheme: IconThemeData(
-//       color: AppColorsDark.white,
-//       size: 24.sp,
-//     ),
-//     titleTextStyle: TextStyle(
-//       fontSize: 20.sp,
-//       fontWeight: FontWeight.bold,
-//       color: AppColorsDark.white,
-//       fontFamily: 'JannaLT',
-//     ),
-//     toolbarHeight: 56.h,
-//     shape: RoundedRectangleBorder(
-//       borderRadius: BorderRadius.vertical(
-//         bottom: Radius.circular(16.r),
-//       ),
-//     ),
-//     systemOverlayStyle: SystemUiOverlayStyle.light,
-//   ),
-//   iconTheme: IconThemeData(
-//     color: AppColorsDark.gold,
-//     size: 20.sp,
-//   ),
-//   textTheme: TextTheme(
-//     labelLarge: TextStyle(
-//       fontSize: 24.sp,
-//       fontWeight: FontWeight.bold,
-//       color: AppColorsDark.white,
-//       fontFamily: 'JannaLT',
-//     ),
-//     labelMedium: TextStyle(
-//       fontSize: 16.sp,
-//       fontWeight: FontWeight.bold,
-//       color: AppColorsDark.white,
-//       fontFamily: 'JannaLT',
-//     ),
-//     labelSmall: TextStyle(
-//       fontSize: 14.sp,
-//       fontWeight: FontWeight.bold,
-//       color: AppColorsDark.white,
-//       fontFamily: 'JannaLT',
-//     ),
-//     titleMedium: TextStyle(
-//       fontSize: 20.sp,
-//       fontWeight: FontWeight.bold,
-//       color: AppColorsDark.white,
-//       fontFamily: 'JannaLT',
-//     ),
-//   ),
-//   elevatedButtonTheme: ElevatedButtonThemeData(
-//     style: ElevatedButton.styleFrom(
-//       backgroundColor: AppColorsDark.gold,
-//       foregroundColor: AppColorsDark.primaryColor,
-//       textStyle: TextStyle(
-//         fontSize: 20.sp,
-//         fontWeight: FontWeight.w400,
-//         color: AppColorsDark.white,
-//         fontFamily: 'JannaLT',
-//       ),
-//       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-//       padding: EdgeInsets.all(16.r),
-//     ),
-//   ),
-//   inputDecorationTheme: InputDecorationTheme(
-//     isDense: true,
-//     filled: true,
-//     fillColor: AppColorsDark.primaryColor,
-//     hintStyle: TextStyle(
-//       color: AppColorsDark.white,
-//       fontSize: 16.sp,
-//       fontWeight: FontWeight.bold,
-//       fontFamily: 'JannaLT',
-//     ),
-//     contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
-//     border: OutlineInputBorder(
-//       borderRadius: BorderRadius.circular(10.r),
-//       borderSide: BorderSide(color: AppColorsDark.gold, width: 1),
-//     ),
-//     enabledBorder: OutlineInputBorder(
-//       borderRadius: BorderRadius.circular(10.r),
-//       borderSide: BorderSide(color: AppColorsDark.gold, width: 1),
-//     ),
-//     focusedBorder: OutlineInputBorder(
-//       borderRadius: BorderRadius.circular(10.r),
-//       borderSide: BorderSide(color: AppColorsDark.gold, width: 1),
-//     ),
-//     errorBorder: OutlineInputBorder(
-//       borderRadius: BorderRadius.circular(10.r),
-//       borderSide: BorderSide(color: Colors.red, width: 1),
-//     ),
-//     focusedErrorBorder: OutlineInputBorder(
-//       borderRadius: BorderRadius.circular(10.r),
-//       borderSide: BorderSide(color: Colors.red, width: 1),
-//     ),
-//   ),
-//   listTileTheme: ListTileThemeData(
-//     tileColor: Colors.transparent,
-//     textColor: AppColorsDark.white,
-//     iconColor: AppColorsDark.white,
-//     leadingAndTrailingTextStyle: TextStyle(
-//       color: AppColorsDark.white,
-//       fontFamily: 'JannaLT',
-//     ),
-//     contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-//     dense: true,
-//     style: ListTileStyle.drawer,
-//   ),
-// );
+import 'package:enently/core/theme/app_color/app_color_dark.dart';
+import 'package:enently/core/theme/app_text/app_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+final ThemeData darkTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.dark,
+
+  primaryColor: DarkAppColors.mainColor,
+  scaffoldBackgroundColor: DarkAppColors.background,
+
+  appBarTheme: AppBarTheme(
+    backgroundColor: DarkAppColors.background,
+    foregroundColor: DarkAppColors.mainText,
+    centerTitle: true,
+  ),
+
+  dividerColor: DarkAppColors.stroke,
+
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: DarkAppColors.mainColor,
+    foregroundColor: DarkAppColors.mainText,
+    shape: const CircleBorder(),
+  ),
+
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: DarkAppColors.background,
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: DarkAppColors.mainColor,
+    unselectedItemColor: DarkAppColors.secondaryText,
+    showUnselectedLabels: true,
+    showSelectedLabels: true,
+  ),
+
+  inputDecorationTheme: InputDecorationTheme(
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+      borderSide: BorderSide(color: DarkAppColors.stroke, width: 1.w),
+    ),
+
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+      borderSide: BorderSide(color: DarkAppColors.mainColor, width: 1.w),
+    ),
+
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+      borderSide: BorderSide(color: DarkAppColors.red, width: 1.w),
+    ),
+
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+      borderSide: BorderSide(color: DarkAppColors.red, width: 1.w),
+    ),
+
+    fillColor: DarkAppColors.inputs,
+
+    hintStyle: AppTextStyles.bodyMedium.copyWith(
+      color: DarkAppColors.secondaryText,
+    ),
+
+    filled: true,
+    prefixIconColor: DarkAppColors.secondaryText,
+    suffixIconColor: DarkAppColors.secondaryText,
+  ),
+
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      padding: REdgeInsets.symmetric(vertical: 9),
+      backgroundColor: DarkAppColors.mainColor,
+      foregroundColor: DarkAppColors.mainText,
+      textStyle: AppTextStyles.titleMedium.copyWith(
+        color: DarkAppColors.mainText,
+      ),
+    ),
+  ),
+
+  cardTheme: CardThemeData(
+    color: DarkAppColors.inputs,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.r),
+      side: BorderSide(color: DarkAppColors.stroke, width: 1.w),
+    ),
+  ),
+
+  iconTheme: IconThemeData(color: DarkAppColors.mainColor),
+
+  textTheme: TextTheme(
+    headlineLarge: AppTextStyles.headlineLarge.copyWith(
+      color: DarkAppColors.mainText,
+    ),
+
+    titleLarge: AppTextStyles.titleLarge.copyWith(
+      color: DarkAppColors.mainText,
+    ),
+
+    titleMedium: AppTextStyles.titleMedium.copyWith(
+      color: DarkAppColors.mainColor,
+    ),
+
+    titleSmall: AppTextStyles.titleSmall.copyWith(
+      color: DarkAppColors.mainColor,
+    ),
+
+    bodyLarge: AppTextStyles.bodyLarge.copyWith(color: DarkAppColors.mainText),
+
+    bodyMedium: AppTextStyles.bodyMedium.copyWith(
+      color: DarkAppColors.secondaryText,
+    ),
+
+    bodySmall: AppTextStyles.bodySmall.copyWith(
+      color: DarkAppColors.secondaryText,
+    ),
+
+    labelLarge: AppTextStyles.labelLarge.copyWith(
+      color: DarkAppColors.mainText,
+    ),
+
+    labelMedium: AppTextStyles.labelMedium.copyWith(
+      color: DarkAppColors.secondaryText,
+    ),
+
+    labelSmall: AppTextStyles.labelSmall.copyWith(
+      color: DarkAppColors.mainColor,
+    ),
+  ),
+
+  colorScheme: ColorScheme.dark(
+    primary: DarkAppColors.mainColor,
+    secondary: DarkAppColors.stroke,
+
+    surface: DarkAppColors.inputs,
+    onSurface: DarkAppColors.mainText,
+    error: DarkAppColors.red,
+  ),
+);

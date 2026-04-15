@@ -39,7 +39,7 @@ class CustomTextField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: AppColorsLigth.gold,
+      cursorColor: LightAppColors.mainColor, 
 
       style: Theme.of(context).textTheme.labelMedium,
       controller: controller,
