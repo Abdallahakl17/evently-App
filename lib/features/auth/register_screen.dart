@@ -2,6 +2,7 @@ import 'package:enently/core/assets/app_images.dart';
 import 'package:enently/core/model/user_model.dart';
 import 'package:enently/core/services/firebase_sevices/auth_service.dart';
 import 'package:enently/core/services/firebase_sevices/store_service.dart';
+import 'package:enently/core/utils/utils_ui/buttons.dart';
 import 'package:enently/core/utils/utils_ui/utils_ui_toast.dart';
 import 'package:enently/core/validators/feilds/custom_textfeild.dart';
 import 'package:enently/core/validators/validator.dart';
@@ -21,7 +22,51 @@ class RegisterScreen extends HookWidget {
     final confirmPasswordController = useTextEditingController();
     final nameController = useTextEditingController();
     final isLoading = useState(false);
+    final isSecure = useState(true);
     final keyy = useMemoized(() => GlobalKey<FormState>());
+    Future<void> register(BuildContext context) async {
+      if (!keyy.currentState!.validate()) return;
+
+      try {
+        DialogUtils.showLoading(context, dismissible: false);
+
+        final userCredential = await AuthService.sigUP(
+          emailController.text.trim().toLowerCase(),
+          passwordController.text.trim(),
+        );
+
+        Navigator.pop(context);
+
+        if (userCredential == null) {
+          DialogUtils.showToastMessage(
+            message: "Registration failed",
+            bgColor: Colors.red,
+          );
+          return;
+        }
+
+        final userModel = UserModel(
+          id: userCredential.user!.uid,
+          email: emailController.text.trim(),
+          name: nameController.text.trim(),
+        );
+
+        await StoreService.addUser(userModel);
+
+        DialogUtils.showToastMessage(
+          message: "Account created successfully",
+          bgColor: Colors.green,
+        );
+      } catch (e) {
+        Navigator.pop(context);
+
+        DialogUtils.showToastMessage(
+          message: "Something went wrong",
+          bgColor: Colors.red,
+        );
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(AppImages.titleIamge, fit: BoxFit.contain),
@@ -62,10 +107,16 @@ class RegisterScreen extends HookWidget {
                 controller: passwordController,
                 hintText: appLocalizations.enter_your_password,
                 suffixIcon: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.visibility_outlined),
+                  onPressed: () {
+                    isSecure.value = !isSecure.value;
+                  },
+                  icon: Icon(
+                    isSecure.value
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                  ),
                 ),
-                obscureText: false,
+                obscureText: isSecure.value,
               ),
               Padding(
                 padding: REdgeInsets.symmetric(vertical: 16),
@@ -75,65 +126,27 @@ class RegisterScreen extends HookWidget {
                   controller: confirmPasswordController,
                   hintText: appLocalizations.confirm_your_password,
                   suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.visibility_outlined),
+                    onPressed: () {
+                      isSecure.value = !isSecure.value;
+                    },
+                    icon: Icon(
+                      isSecure.value
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                    ),
                   ),
-                  obscureText: false,
+                  obscureText: isSecure.value,
                 ),
               ),
 
               SizedBox(height: 50.h),
 
-              ElevatedButton(
-                onPressed: isLoading.value
-                    ? null
-                    : () async {
-                        if (!keyy.currentState!.validate()) return;
+              AppCustomButton(
+                text: appLocalizations.sing_up,
 
-                        try {
-                          DialogUtils.showLoading(context, dismissible: false);
-
-                          final userCredential = await AuthService.sigUP(
-                            emailController.text.trim().toLowerCase(),
-                            passwordController.text.trim(),
-                          );
-
-                          Navigator.pop(context);
-
-                          if (userCredential == null) {
-                            DialogUtils.showToastMessage(
-                              message: "Registration failed",
-                              bgColor: Colors.red,
-                            );
-                            return;
-                          }
-
-                          final uid = userCredential.user!.uid;
-
-                          final userModel = UserModel(
-                            id: uid,
-                            email: emailController.text.trim(),
-                            name: nameController.text.trim(),
-                          );
-
-                          await StoreService.addUser(userModel);
-
-                          DialogUtils.showToastMessage(
-                            message: "Account created successfully",
-                            bgColor: Colors.green,
-                          );
-                        } catch (e) {
-                          Navigator.pop(context);
-
-                          DialogUtils.showToastMessage(
-                            message: "Something went wrong",
-                            bgColor: Colors.red,
-                          );
-                        }
-                      },
-
-                child: Text("Register"),
+                onPressed: isLoading.value ? null : () => register(context),
               ),
+
               Padding(
                 padding: REdgeInsets.symmetric(vertical: 24),
                 child: Row(
