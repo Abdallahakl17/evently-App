@@ -7,6 +7,7 @@ import 'package:enently/core/utils/utils_ui/buttons.dart';
 import 'package:enently/core/utils/utils_ui/utils_ui_toast.dart';
 import 'package:enently/core/validators/feilds/custom_textfeild.dart';
 import 'package:enently/core/validators/validator.dart';
+import 'package:enently/features/widget/social_google_sections.dart';
 import 'package:enently/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -162,19 +163,7 @@ class LoginScreen extends HookWidget {
                 ],
               ),
               SizedBox(height: 32.h),
-              Row(
-                children: [
-                  const Expanded(child: Divider()),
-                  Padding(
-                    padding: REdgeInsets.symmetric(horizontal: 8),
-                    child: Text(
-                      appLocalizations.or,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ),
-                  const Expanded(child: Divider()),
-                ],
-              ),
+              SocialLoginSection(onGoogleTap: () {  },)
             ],
           ),
         ),
