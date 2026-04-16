@@ -10,7 +10,7 @@ final lightColorScheme = ColorScheme.light(
 
   surface: LightAppColors.background,
   surfaceContainerHighest: LightAppColors.inputs,
-
+  outlineVariant: LightAppColors.stroke,
   error: LightAppColors.red,
 
   onSurface: LightAppColors.mainText,
@@ -34,7 +34,7 @@ final ThemeData lightTheme = ThemeData(
     centerTitle: true,
   ),
 
-  dividerColor: lightColorScheme.secondary,
+  dividerTheme: DividerThemeData(color: LightAppColors.stroke, thickness: 1),
 
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: lightColorScheme.primary,

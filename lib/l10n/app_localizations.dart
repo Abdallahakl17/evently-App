@@ -133,7 +133,7 @@ abstract class AppLocalizations {
   /// No description provided for @dont_have_an_account.
   ///
   /// In en, this message translates to:
-  /// **'Don\'t have an account'**
+  /// **'Don\'t have an account? '**
   String get dont_have_an_account;
 
   /// No description provided for @sing_up.
