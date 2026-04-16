@@ -61,6 +61,6 @@ abstract class AppTextStyles {
   static final labelSmall = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
-    fontFamily: fontFamily,decoration: TextDecoration.underline
+    fontFamily: fontFamily,
   );
 }

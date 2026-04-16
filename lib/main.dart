@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: AppRoutes.register,
           routes: {
-            AppRoutes.login: (context) => const LoginScreen(),
+            AppRoutes.login: (context) =>   LoginScreen(),
             AppRoutes.register: (context) => RegisterScreen(),
             AppRoutes.homeScreen: (context) => const HomeScreen(),
             // AppRoutes.createEvent: (context) => const CreateEventScreen(),

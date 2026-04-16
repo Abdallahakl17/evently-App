@@ -23,61 +23,58 @@ class RegisterScreen extends HookWidget {
     final confirmPasswordController = useTextEditingController();
     final nameController = useTextEditingController();
     final isLoading = useState(false);
-    final isSecure = useState(true);
+    final isPasswordSecure = useState(true);
+    final isConfirmPasswordSecure = useState(true);
     final keyy = useMemoized(() => GlobalKey<FormState>());
-   Future<void> register(BuildContext context) async {
-  if (!keyy.currentState!.validate()) return;
+    Future<void> register(BuildContext context) async {
+      if (!keyy.currentState!.validate()) return;
 
-  try {
-    isLoading.value = true;
+      try {
+        isLoading.value = true;
 
-    DialogUtils.showLoading(context, dismissible: false);
+        DialogUtils.showLoading(context, dismissible: false);
 
-    final userCredential = await AuthService.sigUP(
-      emailController.text.trim().toLowerCase(),
-      passwordController.text.trim(),
-    );
+        final userCredential = await AuthService.sigUP(
+          emailController.text.trim().toLowerCase(),
+          passwordController.text.trim(),
+        );
 
-    if (userCredential == null) {
-      Navigator.pop(context); // close loading
-      DialogUtils.showToastMessage(
-        message: "Registration failed",
-        bgColor: Colors.red,
-      );
-      return;
+        if (userCredential == null) {
+          Navigator.pop(context); // close loading
+          DialogUtils.showToastMessage(
+            message: "Registration failed",
+            bgColor: Colors.red,
+          );
+          return;
+        }
+
+        final userModel = UserModel(
+          id: userCredential.user!.uid,
+          email: emailController.text.trim(),
+          name: nameController.text.trim(),
+        );
+
+        await StoreService.addUser(userModel);
+
+        Navigator.pop(context); // close loading
+
+        DialogUtils.showToastMessage(
+          message: "Account created successfully",
+          bgColor: Colors.green,
+        );
+
+        Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
+      } catch (e) {
+        Navigator.pop(context); // close loading if error
+
+        DialogUtils.showToastMessage(
+          message: "Something went wrong",
+          bgColor: Colors.red,
+        );
+      } finally {
+        isLoading.value = false;
+      }
     }
-
-    final userModel = UserModel(
-      id: userCredential.user!.uid,
-      email: emailController.text.trim(),
-      name: nameController.text.trim(),
-    );
-
-    await StoreService.addUser(userModel);
-
-    Navigator.pop(context); // close loading
-
-    DialogUtils.showToastMessage(
-      message: "Account created successfully",
-      bgColor: Colors.green,
-    );
-
-    Navigator.pushReplacementNamed(
-      context,
-      AppRoutes.homeScreen,
-    );
-
-  } catch (e) {
-    Navigator.pop(context); // close loading if error
-
-    DialogUtils.showToastMessage(
-      message: "Something went wrong",
-      bgColor: Colors.red,
-    );
-  } finally {
-    isLoading.value = false;
-  }
-}
 
     return Scaffold(
       appBar: AppBar(
@@ -120,15 +117,15 @@ class RegisterScreen extends HookWidget {
                 hintText: appLocalizations.enter_your_password,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    isSecure.value = !isSecure.value;
+                    isPasswordSecure.value = !isPasswordSecure.value;
                   },
                   icon: Icon(
-                    isSecure.value
+                    isPasswordSecure.value
                         ? Icons.visibility_off_outlined
                         : Icons.visibility_outlined,
                   ),
                 ),
-                obscureText: isSecure.value,
+                obscureText: isPasswordSecure.value,
               ),
               Padding(
                 padding: REdgeInsets.symmetric(vertical: 16),
@@ -139,15 +136,16 @@ class RegisterScreen extends HookWidget {
                   hintText: appLocalizations.confirm_your_password,
                   suffixIcon: IconButton(
                     onPressed: () {
-                      isSecure.value = !isSecure.value;
+                      isConfirmPasswordSecure.value =
+                          !isConfirmPasswordSecure.value;
                     },
                     icon: Icon(
-                      isSecure.value
+                      isConfirmPasswordSecure.value
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
                     ),
                   ),
-                  obscureText: isSecure.value,
+                  obscureText: isConfirmPasswordSecure.value,
                 ),
               ),
 
@@ -165,9 +163,17 @@ class RegisterScreen extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(appLocalizations.already_have_an_account),
-                    Text(
-                      appLocalizations.login,
-                      style: Theme.of(context).textTheme.labelSmall,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          AppRoutes.login,
+                        );
+                      },
+                      child: Text(
+                        appLocalizations.login,
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
                     ),
                   ],
                 ),

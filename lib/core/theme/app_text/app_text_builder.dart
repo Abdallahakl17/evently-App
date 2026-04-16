@@ -30,8 +30,12 @@ class AppTextThemeBuilder {
         color: colors.onSurfaceVariant,
       ),
 
-      labelSmall: AppTextStyles.labelSmall.copyWith(color: colors.primary),
-    
+    labelSmall: AppTextStyles.labelSmall.copyWith(
+  color: colors.primary,
+  decoration: TextDecoration.underline,
+  decorationColor: colors.primary,
+  decorationThickness: 1.2,
+),
     );
   }
 }
