@@ -1,12 +1,15 @@
+import 'package:enently/core/assets/routes_const.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/config/provider_lang.dart';
- import 'package:enently/core/theme/app_theme/theme.dart';
+import 'package:enently/core/theme/app_theme/theme.dart';
+import 'package:enently/features/auth/login_screen.dart';
 import 'package:enently/features/auth/register_screen.dart';
+import 'package:enently/features/home/home_screen.dart';
 import 'package:enently/firebase_options.dart';
 import 'package:enently/l10n/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
- import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -39,7 +42,13 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: RegisterScreen(),
+          initialRoute: AppRoutes.register,
+          routes: {
+            AppRoutes.login: (context) => const LoginScreen(),
+            AppRoutes.register: (context) => RegisterScreen(),
+            AppRoutes.homeScreen: (context) => const HomeScreen(),
+            // AppRoutes.createEvent: (context) => const CreateEventScreen(),
+          },
           theme: AppTheme.light,
           themeMode: themeProvider.currentTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

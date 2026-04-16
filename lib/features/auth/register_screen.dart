@@ -1,4 +1,5 @@
 import 'package:enently/core/assets/app_images.dart';
+import 'package:enently/core/assets/routes_const.dart';
 import 'package:enently/core/model/user_model.dart';
 import 'package:enently/core/services/firebase_sevices/auth_service.dart';
 import 'package:enently/core/services/firebase_sevices/store_service.dart';
@@ -24,48 +25,59 @@ class RegisterScreen extends HookWidget {
     final isLoading = useState(false);
     final isSecure = useState(true);
     final keyy = useMemoized(() => GlobalKey<FormState>());
-    Future<void> register(BuildContext context) async {
-      if (!keyy.currentState!.validate()) return;
+   Future<void> register(BuildContext context) async {
+  if (!keyy.currentState!.validate()) return;
 
-      try {
-        DialogUtils.showLoading(context, dismissible: false);
+  try {
+    isLoading.value = true;
 
-        final userCredential = await AuthService.sigUP(
-          emailController.text.trim().toLowerCase(),
-          passwordController.text.trim(),
-        );
+    DialogUtils.showLoading(context, dismissible: false);
 
-        Navigator.pop(context);
+    final userCredential = await AuthService.sigUP(
+      emailController.text.trim().toLowerCase(),
+      passwordController.text.trim(),
+    );
 
-        if (userCredential == null) {
-          DialogUtils.showToastMessage(
-            message: "Registration failed",
-            bgColor: Colors.red,
-          );
-          return;
-        }
-
-        final userModel = UserModel(
-          id: userCredential.user!.uid,
-          email: emailController.text.trim(),
-          name: nameController.text.trim(),
-        );
-
-        await StoreService.addUser(userModel);
-
-        DialogUtils.showToastMessage(
-          message: "Account created successfully",
-          bgColor: Colors.green,
-        );
-      } catch (e) {
-        Navigator.pop(context);
-
-        DialogUtils.showToastMessage(
-          message: "Something went wrong",
-          bgColor: Colors.red,
-        );
-      }
+    if (userCredential == null) {
+      Navigator.pop(context); // close loading
+      DialogUtils.showToastMessage(
+        message: "Registration failed",
+        bgColor: Colors.red,
+      );
+      return;
     }
+
+    final userModel = UserModel(
+      id: userCredential.user!.uid,
+      email: emailController.text.trim(),
+      name: nameController.text.trim(),
+    );
+
+    await StoreService.addUser(userModel);
+
+    Navigator.pop(context); // close loading
+
+    DialogUtils.showToastMessage(
+      message: "Account created successfully",
+      bgColor: Colors.green,
+    );
+
+    Navigator.pushReplacementNamed(
+      context,
+      AppRoutes.homeScreen,
+    );
+
+  } catch (e) {
+    Navigator.pop(context); // close loading if error
+
+    DialogUtils.showToastMessage(
+      message: "Something went wrong",
+      bgColor: Colors.red,
+    );
+  } finally {
+    isLoading.value = false;
+  }
+}
 
     return Scaffold(
       appBar: AppBar(
