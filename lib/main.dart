@@ -4,6 +4,7 @@ import 'package:enently/core/provider/config/provider_lang.dart';
 import 'package:enently/core/theme/app_theme/theme.dart';
 import 'package:enently/features/auth/login_screen.dart';
 import 'package:enently/features/auth/register_screen.dart';
+import 'package:enently/features/auth/resest_password.dart';
 import 'package:enently/features/home/home_screen.dart';
 import 'package:enently/firebase_options.dart';
 import 'package:enently/l10n/app_localizations.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
             AppRoutes.login: (context) =>   LoginScreen(),
             AppRoutes.register: (context) => RegisterScreen(),
             AppRoutes.homeScreen: (context) => const HomeScreen(),
+            AppRoutes.resetpassword: (context) => const ResestPassword(),
             // AppRoutes.createEvent: (context) => const CreateEventScreen(),
           },
           theme: AppTheme.light,
