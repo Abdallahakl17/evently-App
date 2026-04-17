@@ -21,6 +21,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get forget_password => 'هل نسيت كلمة المرور؟';
 
   @override
+  String get forget_passwor_reset => 'هل نسيت كلمة المرور';
+
+  @override
+  String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
   String get login => 'تسجيل الدخول';
 
   @override

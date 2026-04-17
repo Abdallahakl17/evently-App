@@ -4,6 +4,7 @@ abstract class LightAppColors {
   static const Color mainColor = Color(0xFF0E3A99);
 
   static const Color disable = Color(0xFFB9B9B9);
+  static const Color white = Color(0xFFFFFFFF);
 
   static const Color mainText = Color(0xFF1C1C1C);
 

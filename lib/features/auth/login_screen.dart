@@ -129,9 +129,14 @@ class LoginScreen extends HookWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    appLocalizations.forget_password,
-                    style: Theme.of(context).textTheme.labelSmall,
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.resetpassword);
+                    },
+                    child: Text(
+                      appLocalizations.forget_password,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
                   ),
                 ],
               ),
@@ -163,7 +168,7 @@ class LoginScreen extends HookWidget {
                 ],
               ),
               SizedBox(height: 32.h),
-              SocialLoginSection(onGoogleTap: () {  },)
+              SocialLoginSection(onGoogleTap: () {}),
             ],
           ),
         ),

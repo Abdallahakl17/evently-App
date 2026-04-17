@@ -18,13 +18,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enter_your_password => 'Introduce tu contraseña';
 
   @override
-  String get forget_password => '¿Olvidaste tu contraseña?';
+  String get forget_password => 'Olvidaste tu contraseña?';
+
+  @override
+  String get forget_passwor_reset => 'Olvidaste tu contraseña';
+
+  @override
+  String get reset_password => 'Restablecer contraseña';
 
   @override
   String get login => 'Iniciar sesión';
 
   @override
-  String get dont_have_an_account => '¿No tienes una cuenta?';
+  String get dont_have_an_account => 'No tienes una cuenta?';
 
   @override
   String get sing_up => 'Registrarse';
