@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
- 
-   abstract  class LightAppColors {
-  static const Color mainColor = Color(0xFF1350A8);
+abstract class LightAppColors {
+  static const Color mainColor = Color(0xFF0E3A99);
 
   static const Color disable = Color(0xFFB9B9B9);
 
