@@ -2,6 +2,7 @@ import 'package:enently/core/assets/routes_const.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/config/provider_lang.dart';
 import 'package:enently/core/theme/app_theme/theme.dart';
+import 'package:enently/features/auth/confirm_reset_password.dart';
 import 'package:enently/features/auth/login_screen.dart';
 import 'package:enently/features/auth/register_screen.dart';
 import 'package:enently/features/auth/resest_password.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
             AppRoutes.register: (context) => RegisterScreen(),
             AppRoutes.homeScreen: (context) => const HomeScreen(),
             AppRoutes.resetpassword: (context) => const ResestPassword(),
+            AppRoutes.confirmresetpassword: (context) => const ConfirmResetPassword(),
             // AppRoutes.createEvent: (context) => const CreateEventScreen(),
           },
           theme: AppTheme.light,
