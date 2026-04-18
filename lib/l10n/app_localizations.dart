@@ -166,6 +166,12 @@ abstract class AppLocalizations {
   /// **'Login with google'**
   String get login_with_google;
 
+  /// No description provided for @signup_with_google.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up with Google'**
+  String get signup_with_google;
+
   /// No description provided for @create_your_account.
   ///
   /// In en, this message translates to:

@@ -168,7 +168,12 @@ class LoginScreen extends HookWidget {
                 ],
               ),
               SizedBox(height: 32.h),
-              SocialLoginSection(onGoogleTap: () {}),
+              SocialLoginSection(
+                onGoogleTap: () async {
+                  await AuthService.signInWithGoogle();
+                },
+                isLoiginScreen: true,
+              ),
             ],
           ),
         ),

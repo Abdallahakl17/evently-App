@@ -179,8 +179,15 @@ class RegisterScreen extends HookWidget {
                   ],
                 ),
               ),
-     SizedBox(height: 32.h),
-              SocialLoginSection(onGoogleTap: () {  },)        ],
+              SizedBox(height: 32.h),
+              SocialLoginSection(
+                onGoogleTap: () async {
+                  await AuthService.signInWithGoogle();
+                  
+                },
+                isLoiginScreen: false,
+              ),
+            ],
           ),
         ),
       ),

@@ -42,6 +42,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get login_with_google => 'Iniciar sesión con Google';
 
   @override
+  String get signup_with_google => 'Registrarse con Google';
+
+  @override
   String get create_your_account => 'Crea tu cuenta';
 
   @override

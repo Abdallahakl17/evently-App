@@ -42,6 +42,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_with_google => 'Login with google';
 
   @override
+  String get signup_with_google => 'Sign up with Google';
+
+  @override
   String get create_your_account => 'Create your account';
 
   @override

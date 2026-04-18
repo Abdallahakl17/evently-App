@@ -5,8 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SocialLoginSection extends StatelessWidget {
   final VoidCallback onGoogleTap;
-
-  const SocialLoginSection({super.key, required this.onGoogleTap});
+bool isLoiginScreen=true;
+    SocialLoginSection({super.key, required this.onGoogleTap,
+  required this.isLoiginScreen
+  
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,7 @@ class SocialLoginSection extends StatelessWidget {
                   Image.asset(AppImages.googleIamge, height: 24.h, width: 24.w),
                   SizedBox(width: 12.w),
                   Text(
-                    appLocalizations.login_with_google,
+                  isLoiginScreen?  appLocalizations.login_with_google:appLocalizations.signup_with_google,
                     style: text.titleMedium,
                   ),
                 ],

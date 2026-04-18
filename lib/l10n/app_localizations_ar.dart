@@ -42,6 +42,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login_with_google => 'تسجيل الدخول باستخدام جوجل';
 
   @override
+  String get signup_with_google => 'إنشاء حساب باستخدام Google';
+
+  @override
   String get create_your_account => 'إنشاء حسابك';
 
   @override
