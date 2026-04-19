@@ -21,31 +21,33 @@ class ConfirmResetPassword extends HookWidget {
 
         title: Text(appLocalizations.reset_password),
       ),
-      body: Padding(
-        padding: REdgeInsets.all(20.0),
-        child: Form(
-          key: key,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Spacer(flex: 1),
-              CustomTextField(
-                prefixIcon: Icon(Icons.email_outlined),
-                validator: Validators.validateEmail,
-                controller: emailController,
-                hintText: appLocalizations.enter_your_email,
-              ),
-              SizedBox(height: 40.h),
-
-              ElevatedButton(
-                onPressed: () {
-                  if (key.currentState!.validate()) ;
-                },
-                child: Text(appLocalizations.reset_password),
-              ),
-              Spacer(flex: 4),
-            ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: REdgeInsets.all(20.0),
+          child: Form(
+            key: key,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Spacer(flex: 1),
+                CustomTextField(
+                  prefixIcon: Icon(Icons.email_outlined),
+                  validator: Validators.validateEmail,
+                  controller: emailController,
+                  hintText: appLocalizations.enter_your_email,
+                ),
+                SizedBox(height: 40.h),
+        
+                ElevatedButton(
+                  onPressed: () {
+                    if (key.currentState!.validate()) ;
+                  },
+                  child: Text(appLocalizations.reset_password),
+                ),
+                Spacer(flex: 4),
+              ],
+            ),
           ),
         ),
       ),

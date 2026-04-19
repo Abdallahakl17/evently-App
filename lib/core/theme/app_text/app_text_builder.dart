@@ -5,7 +5,7 @@ class AppTextThemeBuilder {
   static TextTheme build(ColorScheme colors) {
     return TextTheme(
       headlineLarge: AppTextStyles.headlineLarge.copyWith(
-        color: colors.primary,
+        color: colors.onSurface,
       ),
 
       titleLarge: AppTextStyles.titleLarge.copyWith(color: colors.onSurface),
@@ -30,12 +30,12 @@ class AppTextThemeBuilder {
         color: colors.onSurfaceVariant,
       ),
 
-    labelSmall: AppTextStyles.labelSmall.copyWith(
-  color: colors.primary,
-  decoration: TextDecoration.underline,
-  decorationColor: colors.primary,
-  decorationThickness: 1.2,
-),
+      labelSmall: AppTextStyles.labelSmall.copyWith(
+        color: colors.primary,
+        decoration: TextDecoration.underline,
+        decorationColor: colors.primary,
+        decorationThickness: 1.2,
+      ),
     );
   }
 }

@@ -12,10 +12,10 @@ final lightColorScheme = ColorScheme.light(
   surfaceContainerHighest: LightAppColors.inputs,
   outlineVariant: LightAppColors.stroke,
   error: LightAppColors.red,
-
-  onSurface: LightAppColors.mainText,
+  surfaceContainer: LightAppColors.inputs,
+  onSurface: LightAppColors.mainColor,
   onSurfaceVariant: LightAppColors.secondaryText,
-
+  onSecondary: LightAppColors.mainText,
   onPrimary: LightAppColors.inputs,
   outline: LightAppColors.disable,
 );
@@ -30,7 +30,7 @@ final ThemeData lightTheme = ThemeData(
 
   appBarTheme: AppBarTheme(
     backgroundColor: lightColorScheme.surface,
-    foregroundColor: lightColorScheme.onSurface,
+    foregroundColor: lightColorScheme.onSecondary,
     centerTitle: true,
   ),
 
@@ -84,6 +84,8 @@ final ThemeData lightTheme = ThemeData(
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      minimumSize: Size(double.infinity, 48.h),
+
       backgroundColor: lightColorScheme.primary,
       foregroundColor: lightColorScheme.onPrimary,
 

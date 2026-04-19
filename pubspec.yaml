@@ -29,6 +29,7 @@ dependencies:
   cloud_firestore: ^6.3.0
   google_sign_in: ^6.2.1
   fluttertoast: ^9.0.0
+  shared_preferences: ^2.5.5
 
 
 # =========================

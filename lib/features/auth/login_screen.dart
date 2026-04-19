@@ -83,98 +83,100 @@ class LoginScreen extends HookWidget {
       appBar: AppBar(
         title: Image.asset(AppImages.titleIamge, fit: BoxFit.contain),
       ),
-      body: Padding(
-        padding: REdgeInsets.symmetric(horizontal: 20),
-        child: Form(
-          key: keyy,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: REdgeInsets.symmetric(vertical: 24),
-                child: Text(
-                  appLocalizations.login_to_your_account,
-                  style: Theme.of(context).textTheme.headlineLarge,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: REdgeInsets.symmetric(horizontal: 20),
+          child: Form(
+            key: keyy,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: REdgeInsets.symmetric(vertical: 24),
+                  child: Text(
+                    appLocalizations.login_to_your_account,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
                 ),
-              ),
-
-              Padding(
-                padding: REdgeInsets.symmetric(vertical: 16),
-                child: CustomTextField(
-                  prefixIcon: Icon(Icons.email_outlined),
-                  validator: Validators.validateEmail,
-                  controller: emailController,
-                  hintText: appLocalizations.enter_your_email,
+        
+                Padding(
+                  padding: REdgeInsets.symmetric(vertical: 16),
+                  child: CustomTextField(
+                    prefixIcon: Icon(Icons.email_outlined),
+                    validator: Validators.validateEmail,
+                    controller: emailController,
+                    hintText: appLocalizations.enter_your_email,
+                  ),
                 ),
-              ),
-              CustomTextField(
-                prefixIcon: Icon(Icons.lock_outline),
-                validator: Validators.validatePassword,
-                controller: passwordController,
-                hintText: appLocalizations.enter_your_password,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    isSecure.value = !isSecure.value;
+                CustomTextField(
+                  prefixIcon: Icon(Icons.lock_outline),
+                  validator: Validators.validatePassword,
+                  controller: passwordController,
+                  hintText: appLocalizations.enter_your_password,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      isSecure.value = !isSecure.value;
+                    },
+                    icon: Icon(
+                      isSecure.value
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                    ),
+                  ),
+                  obscureText: isSecure.value,
+                ),
+        
+                SizedBox(height: 8.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.resetpassword);
+                      },
+                      child: Text(
+                        appLocalizations.forget_password,
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 48.h),
+        
+                AppCustomButton(
+                  text: appLocalizations.login,
+        
+                  onPressed: isLoading.value ? null : () => login(context),
+                ),
+                SizedBox(height: 48.h),
+        
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(appLocalizations.dont_have_an_account),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          AppRoutes.register,
+                        );
+                      },
+                      child: Text(
+                        appLocalizations.sing_up,
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 32.h),
+                SocialLoginSection(
+                  onGoogleTap: () async {
+                    await AuthService.signInWithGoogle();
                   },
-                  icon: Icon(
-                    isSecure.value
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                  ),
+                  isLoiginScreen: true,
                 ),
-                obscureText: isSecure.value,
-              ),
-
-              SizedBox(height: 8.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.resetpassword);
-                    },
-                    child: Text(
-                      appLocalizations.forget_password,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 48.h),
-
-              AppCustomButton(
-                text: appLocalizations.login,
-
-                onPressed: isLoading.value ? null : () => login(context),
-              ),
-              SizedBox(height: 48.h),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(appLocalizations.dont_have_an_account),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        AppRoutes.register,
-                      );
-                    },
-                    child: Text(
-                      appLocalizations.sing_up,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 32.h),
-              SocialLoginSection(
-                onGoogleTap: () async {
-                  await AuthService.signInWithGoogle();
-                },
-                isLoiginScreen: true,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

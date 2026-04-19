@@ -1,6 +1,7 @@
 import 'package:enently/core/assets/routes_const.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/config/provider_lang.dart';
+import 'package:enently/core/shared/shared_pref_manger.dart';
 import 'package:enently/core/theme/app_theme/theme.dart';
 import 'package:enently/features/auth/confirm_reset_password.dart';
 import 'package:enently/features/auth/login_screen.dart';
@@ -17,6 +18,7 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
+  await SharedPrefsHelper.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
@@ -35,8 +37,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var themeProvider = Provider.of<ThemeProvider>(context);
-    var langProvider = Provider.of<LangProvider>(context);
+    final themeProvider = context.watch<ThemeProvider>();
+    final langProvider = context.watch<LangProvider>();
     return ScreenUtilInit(
       designSize: const Size(430, 932),
       minTextAdapt: true,
@@ -46,11 +48,12 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: AppRoutes.register,
           routes: {
-            AppRoutes.login: (context) =>   LoginScreen(),
+            AppRoutes.login: (context) => LoginScreen(),
             AppRoutes.register: (context) => RegisterScreen(),
             AppRoutes.homeScreen: (context) => const HomeScreen(),
             AppRoutes.resetpassword: (context) => const ResestPassword(),
-            AppRoutes.confirmresetpassword: (context) => const ConfirmResetPassword(),
+            AppRoutes.confirmresetpassword: (context) =>
+                const ConfirmResetPassword(),
             // AppRoutes.createEvent: (context) => const CreateEventScreen(),
           },
           theme: AppTheme.light,
