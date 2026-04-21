@@ -45,6 +45,12 @@ class SharedPrefsHelper {
   }
 
   static String getCurrentLang() {
-    return prefs.getString(langKey) ?? 'en';
+    final lang = prefs.getString(langKey);
+
+    if (lang == "en" || lang == "ar" || lang == "es") {
+      return lang!;
+    }
+
+    return "en";
   }
 }

@@ -5,6 +5,6 @@ abstract class AppRoutes {
   static const String createEvent = '/createEvent';
    static const String resetpassword = '/resetpassword';
    static const String confirmresetpassword = '/confirmresetpassword';
- 
+  
  
 }

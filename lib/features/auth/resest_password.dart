@@ -1,7 +1,7 @@
 import 'package:enently/core/assets/app_images.dart';
 import 'package:enently/core/assets/routes_const.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
-import 'package:enently/features/home/custom_arroe_back_button.dart';
+import 'package:enently/features/widget/custom_arroe_back_button.dart';
 import 'package:enently/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

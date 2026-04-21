@@ -1,6 +1,6 @@
 import 'package:enently/core/validators/feilds/custom_textfeild.dart';
 import 'package:enently/core/validators/validator.dart';
-import 'package:enently/features/home/custom_arroe_back_button.dart';
+import 'package:enently/features/widget/custom_arroe_back_button.dart';
 import 'package:enently/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

@@ -1,44 +1,95 @@
 import 'package:enently/core/theme/app_color/app_color_dark.dart';
 import 'package:enently/core/theme/app_text/app_text.dart';
-import 'package:enently/core/theme/app_text/app_text_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final darkColorScheme = ColorScheme.dark(
+  // Primary
   primary: DarkAppColors.mainColor,
-  secondary: DarkAppColors.stroke,
+  onPrimary: DarkAppColors.mainText,
 
+  // Secondary
+  secondary: DarkAppColors.mainColor,
+  onSecondary: DarkAppColors.mainText,
+
+  // Surface
   surface: DarkAppColors.background,
-  surfaceContainerHighest: DarkAppColors.inputs,
-  outlineVariant: DarkAppColors.stroke,
-  outline: DarkAppColors.disable,
-
-  error: DarkAppColors.red,
-  surfaceContainer: DarkAppColors.inputs,
   onSurface: DarkAppColors.mainText,
+
+  // Containers
+  surfaceContainerHighest: DarkAppColors.inputs,
+  surfaceContainer: DarkAppColors.inputs,
+
+  // Variants
   onSurfaceVariant: DarkAppColors.secondaryText,
 
-  onPrimary: DarkAppColors.mainText,
+  // Outline
+  outline: DarkAppColors.disable,
+  outlineVariant: DarkAppColors.stroke,
+
+  // Error
+  error: DarkAppColors.red,
+  onError: DarkAppColors.mainText,
 );
 
 final ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.dark,
-
   colorScheme: darkColorScheme,
-
   scaffoldBackgroundColor: darkColorScheme.surface,
+  fontFamily: AppTextStyles.fontFamily,
+
+  //  TextTheme - مباشرة بدون Builder
+  textTheme: TextTheme(
+    // Headlines
+    headlineLarge: AppTextStyles.headlineLarge.copyWith(
+      color: DarkAppColors.mainText,
+    ),
+
+    // Titles
+    titleLarge: AppTextStyles.titleLarge.copyWith(
+      color: DarkAppColors.mainText,
+    ),
+    titleMedium: AppTextStyles.titleMedium.copyWith(
+      color: DarkAppColors.mainColor,
+    ),
+    titleSmall: AppTextStyles.titleSmall.copyWith(
+      color: DarkAppColors.mainColor,
+    ),
+
+    // Body
+    bodyLarge: AppTextStyles.bodyLarge.copyWith(color: DarkAppColors.mainText),
+    bodyMedium: AppTextStyles.bodyMedium.copyWith(
+      color: DarkAppColors.secondaryText,
+    ),
+    bodySmall: AppTextStyles.bodySmall.copyWith(
+      color: DarkAppColors.secondaryText,
+    ),
+
+    // Labels
+    labelLarge: AppTextStyles.labelLarge.copyWith(
+      color: DarkAppColors.mainText,
+    ),
+    labelMedium: AppTextStyles.labelMedium.copyWith(
+      color: DarkAppColors.secondaryText,
+    ),
+    labelSmall: AppTextStyles.labelSmall.copyWith(
+      color: DarkAppColors.mainColor,
+      decoration: TextDecoration.underline,
+      decorationColor: DarkAppColors.mainColor,
+    ),
+  ),
 
   appBarTheme: AppBarTheme(
     backgroundColor: darkColorScheme.surface,
-    foregroundColor: darkColorScheme.onSurface,
+    foregroundColor: DarkAppColors.mainText,
     centerTitle: true,
+    titleTextStyle: AppTextStyles.titleLarge.copyWith(
+      color: DarkAppColors.mainText,
+    ),
   ),
 
-  dividerTheme: DividerThemeData(
-    color: darkColorScheme.outlineVariant,
-    thickness: 1,
-  ),
+  dividerTheme: DividerThemeData(color: DarkAppColors.mainColor, thickness: 1),
 
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: darkColorScheme.primary,
@@ -46,68 +97,60 @@ final ThemeData darkTheme = ThemeData(
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: darkColorScheme.surfaceContainerHighest,
-    selectedItemColor: darkColorScheme.primary,
-    unselectedItemColor: darkColorScheme.onSurfaceVariant,
+    backgroundColor: DarkAppColors.inputs,
+    selectedItemColor: DarkAppColors.mainColor,
+    unselectedItemColor: DarkAppColors.secondaryText,
     type: BottomNavigationBarType.fixed,
+    selectedLabelStyle: AppTextStyles.labelSmall,
+    unselectedLabelStyle: AppTextStyles.labelSmall,
   ),
 
   inputDecorationTheme: InputDecorationTheme(
-    hintStyle: TextStyle(
-      fontSize: 12.sp,
-      color: darkColorScheme.onSurfaceVariant,
+    hintStyle: AppTextStyles.bodyMedium.copyWith(
+      color: DarkAppColors.secondaryText,
     ),
-
     filled: true,
-    fillColor: darkColorScheme.surfaceContainerHighest,
-
+    fillColor: DarkAppColors.inputs,
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
-      borderSide: BorderSide(color: darkColorScheme.secondary),
+      borderSide: BorderSide(color: DarkAppColors.stroke),
     ),
-
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
-      borderSide: BorderSide(color: darkColorScheme.primary),
+      borderSide: BorderSide(color: DarkAppColors.mainColor, width: 2),
     ),
-
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
-      borderSide: BorderSide(color: darkColorScheme.error),
+      borderSide: BorderSide(color: DarkAppColors.red),
     ),
-
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
-      borderSide: BorderSide(color: darkColorScheme.error),
+      borderSide: BorderSide(color: DarkAppColors.red, width: 2),
     ),
-
-    prefixIconColor: darkColorScheme.outline,
-    suffixIconColor: darkColorScheme.outline,
+    prefixIconColor: DarkAppColors.disable,
+    suffixIconColor: DarkAppColors.disable,
   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       minimumSize: Size(double.infinity, 48.h),
-      backgroundColor: darkColorScheme.primary,
-      foregroundColor: darkColorScheme.onPrimary,
-
+      backgroundColor: DarkAppColors.mainColor,
+      foregroundColor: DarkAppColors.mainText,
       textStyle: AppTextStyles.titleMedium.copyWith(
-        color: darkColorScheme.onPrimary,
+        color: DarkAppColors.mainText,
       ),
-
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
     ),
   ),
 
   cardTheme: CardThemeData(
-    color: darkColorScheme.surfaceContainerHighest,
+    color: DarkAppColors.inputs,
+    elevation: 0,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8.r),
-      side: BorderSide(color: darkColorScheme.secondary),
+      borderRadius: BorderRadius.circular(12.r),
+      side: BorderSide(color: DarkAppColors.stroke),
     ),
   ),
 
-  iconTheme: IconThemeData(color: darkColorScheme.primary),
-
-  textTheme: AppTextThemeBuilder.build(darkColorScheme),
+  iconTheme: IconThemeData(color: DarkAppColors.mainColor),
 );
