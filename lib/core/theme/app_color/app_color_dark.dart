@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract      class DarkAppColors {
+abstract class DarkAppColors {
   static const Color mainColor = Color(0xFF457AED);
 
   static const Color disable = Color(0xFFB9B9B9);

@@ -1,12 +1,10 @@
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/home/home_provider.dart';
-import 'package:enently/core/theme/app_theme/app_ligth_theme.dart';
 import 'package:enently/features/home/tabs/favorite_tab.dart';
 import 'package:enently/features/home/tabs/home_tab.dart';
 import 'package:enently/features/home/tabs/person_tab.dart';
 import 'package:enently/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,16 +18,11 @@ class HomeScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
-     body: tabs[homeProvider.index],
-      floatingActionButton: Container(
-        width: 48.w,
-        height: 48.h,
-
-        decoration: BoxDecoration(
-          color: lightColorScheme.primary,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(Icons.add, color: Colors.white),
+      extendBody: true,
+      body: tabs[homeProvider.index],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: homeProvider.index,

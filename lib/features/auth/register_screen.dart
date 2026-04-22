@@ -52,7 +52,7 @@ class RegisterScreen extends HookWidget {
         final userModel = UserModel(
           id: userCredential.user!.uid,
           email: emailController.text.trim(),
-          name: nameController.text.trim(),
+          name: nameController.text.trim(), favouriteEventsIds: [],
         );
 
         await StoreService.addUser(userModel);

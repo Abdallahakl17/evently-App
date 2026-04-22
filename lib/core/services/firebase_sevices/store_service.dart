@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:enently/core/model/event_model.dart';
 import 'package:enently/core/model/user_model.dart';
 import 'package:enently/core/utils/utils_const.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class StoreService {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -12,16 +14,66 @@ class StoreService {
         .set(userModel.toJson());
   }
 
- static Future<UserModel?> getUser(String userId) async {
-  final docSnapshot = await _db
-      .collection(RemoteConst.users)
-      .doc(userId)
-      .get();
+  static Future<UserModel?> getUser(String userId) async {
+    final docSnapshot = await _db
+        .collection(RemoteConst.users)
+        .doc(userId)
+        .get();
 
-  if (docSnapshot.data() != null) {
-    return UserModel.fromJson(docSnapshot.data()!);
+    if (docSnapshot.data() != null) {
+      return UserModel.fromJson(docSnapshot.data()!);
+    }
+
+    return null;
   }
 
-  return null;
+  static CollectionReference<UserModel> getUsersCollection() {
+    return _db
+        .collection(RemoteConst.users)
+        .withConverter<UserModel>(
+          fromFirestore: (snapshot, _) => UserModel.fromJson(snapshot.data()!),
+          toFirestore: (user, _) => user.toJson(),
+        );
+  }
+
+  static Future<void> addEventToFavourite(String eventId) async {
+    final user = UserModel.currentUser!;
+
+    user.favouriteEventsIds.add(eventId);
+
+    await getUsersCollection().doc(user.id).set(user, SetOptions(merge: true));
+  }
+
+  static Future<void> removeEventFromFavourite(String eventId) async {
+    final user = UserModel.currentUser!;
+
+    user.favouriteEventsIds.remove(eventId);
+
+    await getUsersCollection().doc(user.id).set(user, SetOptions(merge: true));
+  }
+  static Future<List<EventModel>> getFavouriteEvents(
+    CollectionReference<EventModel> eventsCollection) async {
+
+  final ids = UserModel.currentUser!.favouriteEventsIds;
+
+  if (ids.isEmpty) return [];
+
+  final snapshot = await eventsCollection
+      .where(FieldPath.documentId, whereIn: ids)
+      .get();
+
+  return snapshot.docs.map((doc) => doc.data()).toList();
+}static Future<void> loadCurrentUser() async {
+  final firebaseUser =
+      FirebaseAuth.instance.currentUser;
+
+  if (firebaseUser == null) return;
+
+  final user =
+      await StoreService.getUser(firebaseUser.uid);
+
+  if (user != null) {
+    UserModel.currentUser = user;
+  }
 }
 }

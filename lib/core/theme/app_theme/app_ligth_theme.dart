@@ -39,7 +39,7 @@ final ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: lightColorScheme.surface,
   fontFamily: AppTextStyles.fontFamily,
 
-  //  TextTheme - 
+  //  TextTheme -
   textTheme: TextTheme(
     // Headlines
     headlineLarge: AppTextStyles.headlineLarge.copyWith(
@@ -58,9 +58,7 @@ final ThemeData lightTheme = ThemeData(
     ),
 
     // Body
-    bodyLarge: AppTextStyles.bodyLarge.copyWith(
-      color: LightAppColors.mainText,
-    ),
+    bodyLarge: AppTextStyles.bodyLarge.copyWith(color: LightAppColors.mainText),
     bodyMedium: AppTextStyles.bodyMedium.copyWith(
       color: LightAppColors.secondaryText,
     ),
@@ -69,9 +67,7 @@ final ThemeData lightTheme = ThemeData(
     ),
 
     // Labels
-    labelLarge: AppTextStyles.labelLarge.copyWith(
-      color: LightAppColors.white,
-    ),
+    labelLarge: AppTextStyles.labelLarge.copyWith(color: LightAppColors.white),
     labelMedium: AppTextStyles.labelMedium.copyWith(
       color: LightAppColors.secondaryText,
     ),
@@ -91,14 +87,13 @@ final ThemeData lightTheme = ThemeData(
     ),
   ),
 
-  dividerTheme: DividerThemeData(
-    color: LightAppColors.stroke,
-    thickness: 1,
-  ),
+  dividerTheme: DividerThemeData(color: LightAppColors.stroke, thickness: 1),
 
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: lightColorScheme.primary,
     foregroundColor: lightColorScheme.onPrimary,
+    elevation: 3,
+    shape: CircleBorder(),
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -144,22 +139,19 @@ final ThemeData lightTheme = ThemeData(
       textStyle: AppTextStyles.titleMedium.copyWith(
         color: LightAppColors.white,
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.r),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
     ),
   ),
 
   cardTheme: CardThemeData(
+    margin: EdgeInsets.all(16.h),
     color: LightAppColors.inputs,
     elevation: 0,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12.r),
+      borderRadius: BorderRadius.circular(8.r),
       side: BorderSide(color: LightAppColors.stroke),
     ),
   ),
 
-  iconTheme: IconThemeData(
-    color: LightAppColors.mainColor,
-  ),
+  iconTheme: IconThemeData(color: LightAppColors.mainColor),
 );

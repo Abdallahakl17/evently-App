@@ -1,27 +1,23 @@
-class UserModel {
+class UserModel{
+  static UserModel? currentUser;
+  List<String> favouriteEventsIds;
   String id;
   String name;
   String email;
+  UserModel({required this.id, required this.name, required this.email, required this.favouriteEventsIds});
 
-  UserModel({
-    required this.email,
-    required this.id,
-    required this.name,
-  });
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'email': email,
-      'name': name,
-    };
-  }
+  UserModel.fromJson(Map<String, dynamic> json): this(
+    favouriteEventsIds: (json['favouriteEventsIds'] as List<dynamic>).cast<String>(),
+    id: json["id"],
+    name: json["name"],
+    email: json["email"],
+  );
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      id: json['id'],
-      email: json['email'],
-      name: json['name'],
-    );
-  }
+  Map<String, dynamic>toJson()=>{
+    'favouriteEventsIds': favouriteEventsIds,
+    "id":id,
+    "name":name,
+    "email": email
+  };
 }

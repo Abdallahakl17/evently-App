@@ -39,8 +39,7 @@ final ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: darkColorScheme.surface,
   fontFamily: AppTextStyles.fontFamily,
 
-  //  TextTheme - مباشرة بدون Builder
-  textTheme: TextTheme(
+   textTheme: TextTheme(
     // Headlines
     headlineLarge: AppTextStyles.headlineLarge.copyWith(
       color: DarkAppColors.mainText,
@@ -94,6 +93,8 @@ final ThemeData darkTheme = ThemeData(
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: darkColorScheme.primary,
     foregroundColor: darkColorScheme.onPrimary,
+    elevation: 1,
+    shape: CircleBorder(),
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(

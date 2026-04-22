@@ -1,6 +1,10 @@
+import 'package:enently/core/model/category_model.dart';
 import 'package:enently/core/model/user_model.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/home/home_provider.dart';
+import 'package:enently/core/provider/home/tab_items_provider.dart';
+import 'package:enently/features/widget/custom_event_item.dart';
+import 'package:enently/features/widget/custom_tab_bar_items.dart';
 import 'package:enently/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +15,6 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeProvider = context.watch<HomeProvider>();
     final themeProvider = context.watch<ThemeProvider>();
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
@@ -20,7 +23,7 @@ class HomeTab extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
             child: Row(
               children: [
                 Column(
@@ -51,14 +54,41 @@ class HomeTab extends StatelessWidget {
                 Container(
                   width: 32.w,
                   height: 32.h,
-                  child: Center(child: Text('En', style: textTheme.labelLarge)),
                   decoration: BoxDecoration(
                     color: colors.primary,
                     borderRadius: BorderRadius.circular(8.r),
                   ),
+                  child: Center(child: Text('En', style: textTheme.labelLarge)),
                 ),
               ],
             ),
+          ),
+
+          Consumer<TabItemsProvider>(
+            builder:
+                (
+                  BuildContext context,
+                  TabItemsProvider provider,
+                  Widget? child,
+                ) {
+                  return SizedBox(
+                    height: 50.h,
+                    child: CustomTabBarItems(
+                      categories: CategoryModel.getCategoriesWithAll(context),
+
+                      selectedIndex: provider.selectedIndex,
+                      onCategoryItemClicked: (index, catogry) {
+                        provider.changeIndex(index);
+                      },
+                    ),
+                  );
+                },
+          ),
+          SizedBox(height: 24.h),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: EventItem(markAsFavourite: true),
           ),
         ],
       ),

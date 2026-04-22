@@ -1,12 +1,14 @@
 import 'package:enently/core/assets/routes_const.dart';
+import 'package:enently/core/provider/auth/login_provider.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/config/provider_lang.dart';
 import 'package:enently/core/provider/home/home_provider.dart';
+import 'package:enently/core/provider/home/tab_items_provider.dart';
+import 'package:enently/core/services/firebase_sevices/store_service.dart';
 import 'package:enently/core/shared/shared_pref_manger.dart';
 import 'package:enently/core/theme/app_theme/app_dark_theme.dart';
 import 'package:enently/core/theme/app_theme/app_ligth_theme.dart';
-import 'package:enently/core/theme/app_theme/theme.dart';
-import 'package:enently/features/auth/confirm_reset_password.dart';
+ import 'package:enently/features/auth/confirm_reset_password.dart';
 import 'package:enently/features/auth/login_screen.dart';
 import 'package:enently/features/auth/register_screen.dart';
 import 'package:enently/features/auth/resest_password.dart';
@@ -23,12 +25,15 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   await SharedPrefsHelper.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await StoreService.loadCurrentUser();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => LangProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider()),
+        ChangeNotifierProvider(create: (_) => TabItemsProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
 
       child: MyApp(),
