@@ -127,4 +127,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exhibition => 'معرض';
+
+  @override
+  String get logoutConfirmationMessage => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get ok => 'موافق';
+
+  @override
+  String get cancel => 'إلغاء';
 }

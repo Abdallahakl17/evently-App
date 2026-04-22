@@ -1,6 +1,7 @@
 import 'package:enently/core/assets/app_images.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/config/provider_lang.dart';
+import 'package:enently/core/utils/utils_ui/utils_ui_toast.dart';
 import 'package:enently/features/widget/custom_container_tab.dart';
 import 'package:enently/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,9 @@ class PersonTab extends StatelessWidget {
             CustomContainerTab(
               text: appLocalizations.logout,
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  DialogUtils.showLogoutDialog(context);
+                },
                 icon: Icon(Icons.logout, color: colors.error),
               ),
             ),

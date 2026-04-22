@@ -127,4 +127,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get exhibition => 'Exposición';
+
+  @override
+  String get logoutConfirmationMessage =>
+      '¿Estás seguro de que deseas cerrar sesión?';
+
+  @override
+  String get ok => 'Aceptar';
+
+  @override
+  String get cancel => 'Cancelar';
 }

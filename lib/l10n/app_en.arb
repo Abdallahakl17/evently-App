@@ -39,6 +39,8 @@
 "birthday":"Birthday",
 "book_club":"Book Club",
 "all":"All",
-"exhibition":"Exhibition"
-
+"exhibition":"Exhibition",
+"logoutConfirmationMessage": "Are you sure you want to logout?",
+"ok": "OK",
+"cancel": "Cancel"
 }

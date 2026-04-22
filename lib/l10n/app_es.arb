@@ -38,5 +38,8 @@
   "birthday": "Cumpleaños",
   "book_club": "Club de lectura",
   "all": "Todos",
-  "exhibition": "Exposición"
+  "exhibition": "Exposición",
+  "logoutConfirmationMessage": "¿Estás seguro de que deseas cerrar sesión?",
+  "ok": "Aceptar",
+  "cancel": "Cancelar"
 }

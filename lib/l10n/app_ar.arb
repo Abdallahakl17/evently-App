@@ -38,5 +38,8 @@
   "birthday": "عيد ميلاد",
   "book_club": "نادي كتاب",
   "all": "الكل",
-  "exhibition": "معرض"
+  "exhibition": "معرض",
+  "logoutConfirmationMessage": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "ok": "موافق",
+  "cancel": "إلغاء"
 }

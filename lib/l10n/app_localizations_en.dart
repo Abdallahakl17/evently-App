@@ -127,4 +127,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exhibition => 'Exhibition';
+
+  @override
+  String get logoutConfirmationMessage => 'Are you sure you want to logout?';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get cancel => 'Cancel';
 }
