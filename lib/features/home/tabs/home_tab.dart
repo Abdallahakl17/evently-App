@@ -1,5 +1,6 @@
 import 'package:enently/core/model/category_model.dart';
 import 'package:enently/core/model/user_model.dart';
+import 'package:enently/core/provider/auth/user_provider.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/home/home_provider.dart';
 import 'package:enently/core/provider/home/tab_items_provider.dart';
@@ -18,6 +19,8 @@ class HomeTab extends StatelessWidget {
     final themeProvider = context.watch<ThemeProvider>();
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final userProvider = context.watch<UserProvider>();
+
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return SafeArea(
       child: Column(
@@ -33,7 +36,10 @@ class HomeTab extends StatelessWidget {
                       "${appLocalizations.welcome_back} ✨",
                       style: textTheme.bodyMedium,
                     ),
-                    Text('UserModel.', style: textTheme.titleLarge),
+                    Text(
+                      userProvider.currentUser?.name ?? 'Loading...',
+                      style: textTheme.titleLarge,
+                    ),
                   ],
                 ),
 

@@ -19,7 +19,11 @@ class UserProvider extends ChangeNotifier {
     currentUser = UserModel.currentUser;
     notifyListeners();
   }
-
+void clearUser() {
+  currentUser = null;
+  UserModel.currentUser = null;
+  notifyListeners();
+}
   void setUser(UserModel user) {
     currentUser = user;
     notifyListeners();

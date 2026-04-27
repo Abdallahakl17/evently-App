@@ -1,24 +1,4 @@
-import 'package:enently/core/assets/routes_const.dart';
-import 'package:enently/core/provider/auth/login_provider.dart';
-import 'package:enently/core/provider/config/provider.theme.dart';
-import 'package:enently/core/provider/config/provider_lang.dart';
-import 'package:enently/core/provider/home/home_provider.dart';
-import 'package:enently/core/provider/home/tab_items_provider.dart';
-import 'package:enently/core/services/firebase_sevices/store_service.dart';
-import 'package:enently/core/shared/shared_pref_manger.dart';
-import 'package:enently/core/theme/app_theme/app_dark_theme.dart';
-import 'package:enently/core/theme/app_theme/app_ligth_theme.dart';
- import 'package:enently/features/auth/confirm_reset_password.dart';
-import 'package:enently/features/auth/login_screen.dart';
-import 'package:enently/features/auth/register_screen.dart';
-import 'package:enently/features/auth/resest_password.dart';
-import 'package:enently/features/home/home.dart';
-import 'package:enently/firebase_options.dart';
-import 'package:enently/l10n/app_localizations.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+import 'package:enently/shared.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +13,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => LangProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider()),
         ChangeNotifierProvider(create: (_) => TabItemsProvider()),
-        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()..loadUser()),
       ],
 
       child: MyApp(),
@@ -55,7 +35,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.homeScreen,
+          initialRoute: AppRoutes.login,
           routes: {
             AppRoutes.login: (context) => LoginScreen(),
             AppRoutes.register: (context) => RegisterScreen(),

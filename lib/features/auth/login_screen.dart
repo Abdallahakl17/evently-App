@@ -1,6 +1,7 @@
 import 'package:enently/core/assets/app_images.dart';
 import 'package:enently/core/assets/routes_const.dart';
 import 'package:enently/core/model/user_model.dart';
+import 'package:enently/core/provider/auth/user_provider.dart';
 import 'package:enently/core/services/firebase_sevices/auth_service.dart';
 import 'package:enently/core/services/firebase_sevices/store_service.dart';
 import 'package:enently/core/utils/utils_ui/buttons.dart';
@@ -12,6 +13,7 @@ import 'package:enently/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends HookWidget {
   LoginScreen({super.key});
@@ -41,7 +43,7 @@ class LoginScreen extends HookWidget {
           Navigator.pop(context);
 
           DialogUtils.showToastMessage(
-            message: "Login failed",
+            message: "Email or Password Error",
             bgColor: Colors.red,
           );
           return;
@@ -58,7 +60,9 @@ class LoginScreen extends HookWidget {
           );
           return;
         }
-
+        context.read<UserProvider>()
+          ..clearUser()
+          ..setUser(user);
         Navigator.pop(context);
 
         DialogUtils.showToastMessage(
@@ -98,7 +102,7 @@ class LoginScreen extends HookWidget {
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ),
-        
+
                 Padding(
                   padding: REdgeInsets.symmetric(vertical: 16),
                   child: CustomTextField(
@@ -125,7 +129,7 @@ class LoginScreen extends HookWidget {
                   ),
                   obscureText: isSecure.value,
                 ),
-        
+
                 SizedBox(height: 8.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -142,14 +146,14 @@ class LoginScreen extends HookWidget {
                   ],
                 ),
                 SizedBox(height: 48.h),
-        
+
                 AppCustomButton(
                   text: appLocalizations.login,
-        
+
                   onPressed: isLoading.value ? null : () => login(context),
                 ),
                 SizedBox(height: 48.h),
-        
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

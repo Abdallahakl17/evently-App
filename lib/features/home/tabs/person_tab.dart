@@ -1,6 +1,9 @@
 import 'package:enently/core/assets/app_images.dart';
+import 'package:enently/core/assets/routes_const.dart';
+import 'package:enently/core/provider/auth/user_provider.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/config/provider_lang.dart';
+import 'package:enently/core/services/firebase_sevices/auth_service.dart';
 import 'package:enently/core/utils/utils_ui/utils_ui_toast.dart';
 import 'package:enently/features/widget/custom_container_tab.dart';
 import 'package:enently/l10n/app_localizations.dart';
@@ -17,6 +20,7 @@ class PersonTab extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final themeProvider = context.watch<ThemeProvider>();
     final lagProvider = context.watch<LangProvider>();
+    final userProvider = context.watch<UserProvider>();
     AppLocalizations? appLocalizations = AppLocalizations.of(context);
     return SafeArea(
       child: Padding(
@@ -30,8 +34,14 @@ class PersonTab extends StatelessWidget {
               backgroundImage: AssetImage(AppImagesLigth.restpassword),
             ),
             SizedBox(height: 20.h),
-            Text('name', style: textTheme.titleLarge),
-            Text('email', style: textTheme.bodyMedium),
+            Text(
+              userProvider.currentUser?.name ?? 'Loading...',
+              style: textTheme.titleLarge,
+            ),
+            Text(
+              userProvider.currentUser?.email ?? '',
+              style: textTheme.bodyMedium,
+            ),
             SizedBox(height: 32.h),
             CustomContainerTab(
               text: appLocalizations!.dark_mode,
@@ -69,8 +79,22 @@ class PersonTab extends StatelessWidget {
             CustomContainerTab(
               text: appLocalizations.logout,
               trailing: IconButton(
-                onPressed: () {
-                  DialogUtils.showLogoutDialog(context);
+                onPressed: () async {
+                  final confirm = await DialogUtils.showLogoutDialog(context);
+
+                  if (confirm == true) {
+                    DialogUtils.showLoading(context);
+
+                    await AuthService.signOut();
+
+                    context.read<UserProvider>().clearUser();
+                    await Future.delayed(const Duration(seconds: 2));
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      AppRoutes.login,
+                      (route) => false,
+                    );
+                  }
                 },
                 icon: Icon(Icons.logout, color: colors.error),
               ),

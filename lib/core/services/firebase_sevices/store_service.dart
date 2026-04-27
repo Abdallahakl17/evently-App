@@ -51,29 +51,30 @@ class StoreService {
 
     await getUsersCollection().doc(user.id).set(user, SetOptions(merge: true));
   }
+
   static Future<List<EventModel>> getFavouriteEvents(
-    CollectionReference<EventModel> eventsCollection) async {
+    CollectionReference<EventModel> eventsCollection,
+  ) async {
+    final ids = UserModel.currentUser!.favouriteEventsIds;
 
-  final ids = UserModel.currentUser!.favouriteEventsIds;
+    if (ids.isEmpty) return [];
 
-  if (ids.isEmpty) return [];
+    final snapshot = await eventsCollection
+        .where(FieldPath.documentId, whereIn: ids)
+        .get();
 
-  final snapshot = await eventsCollection
-      .where(FieldPath.documentId, whereIn: ids)
-      .get();
-
-  return snapshot.docs.map((doc) => doc.data()).toList();
-}static Future<void> loadCurrentUser() async {
-  final firebaseUser =
-      FirebaseAuth.instance.currentUser;
-
-  if (firebaseUser == null) return;
-
-  final user =
-      await StoreService.getUser(firebaseUser.uid);
-
-  if (user != null) {
-    UserModel.currentUser = user;
+    return snapshot.docs.map((doc) => doc.data()).toList();
   }
-}
+
+  static Future<void> loadCurrentUser() async {
+    final firebaseUser = FirebaseAuth.instance.currentUser;
+
+    if (firebaseUser == null) return;
+
+    final user = await StoreService.getUser(firebaseUser.uid);
+
+    if (user != null) {
+      UserModel.currentUser = user;
+    }
+  }
 }
