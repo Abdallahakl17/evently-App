@@ -64,13 +64,16 @@ class AddEvent extends HookWidget {
 
       await StoreService.addEventToFireStore(event, context);
 
-      DialogUtils.showSnackBar(
-        context,
-        backgroundColor: colors.primary,
-        appLocalizations.event_added_successfully,
-      );
+     
 
-      Navigator.pop(context);
+   if (context.mounted) {
+          Navigator.pop(context);
+
+          Navigator.pop(context);
+        } DialogUtils.showToastMessage(
+          message: appLocalizations.event_added_successfully,
+          bgColor: Colors.green,
+        );
     }
 
     // for the Time only

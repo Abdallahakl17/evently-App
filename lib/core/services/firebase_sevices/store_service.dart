@@ -1,5 +1,4 @@
-import 'dart:math';
-
+ 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enently/core/model/category_model.dart';
 import 'package:enently/core/model/event_model.dart';
@@ -129,5 +128,14 @@ class StoreService {
     return snapshot.docs
         .map((e) => EventModel.fromJson(e.data(), context))
         .toList();
+  }
+
+  static Future<void> deletEvent(BuildContext context, EventModel event) async {
+    if (event.id == null) return;
+    await getEventsCollection(context).doc(event.id).delete();
+  }
+  static Future<void> editEvent(BuildContext context, EventModel event) async {
+    if (event.id == null) return;
+    await getEventsCollection(context).doc(event.id).update(event.toJson());
   }
 }

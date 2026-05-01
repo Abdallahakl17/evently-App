@@ -435,6 +435,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Event added successfully'**
   String get event_added_successfully;
+
+  /// No description provided for @delete_event.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Event'**
+  String get delete_event;
+
+  /// No description provided for @delete_event_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to delete this event?'**
+  String get delete_event_message;
+
+  /// No description provided for @event_deleted_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Event deleted successfully'**
+  String get event_deleted_successfully;
 }
 
 class _AppLocalizationsDelegate

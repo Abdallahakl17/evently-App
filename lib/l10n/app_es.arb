@@ -59,7 +59,10 @@
   "invalid_phone": "El número de teléfono debe tener 11 dígitos",
   "please_choose_time": "Por favor, elige la hora",
   "please_choose_date": "Por favor, elige la fecha",
-    "event_added_successfully": "Evento agregado correctamente"
+    "event_added_successfully": "Evento agregado correctamente",
+      "delete_event": "Eliminar evento",
+  "delete_event_message": "¿Quieres eliminar este evento?",
+  "event_deleted_successfully": "Evento eliminado correctamente"
 
 
 }

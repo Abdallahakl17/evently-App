@@ -80,7 +80,11 @@ class PersonTab extends StatelessWidget {
               text: appLocalizations.logout,
               trailing: IconButton(
                 onPressed: () async {
-                  final confirm = await DialogUtils.showLogoutDialog(context);
+                  final confirm = await DialogUtils.showLogoutDialog(
+                    context,
+                    tittle:appLocalizations .logout,
+                    desc: appLocalizations.logoutConfirmationMessage,
+                  );
 
                   if (confirm == true) {
                     DialogUtils.showLoading(context);

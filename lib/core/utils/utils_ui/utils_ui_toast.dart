@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DialogUtils {
-   static void showSnackBar(
+  static void showSnackBar(
     BuildContext context,
     String message, {
     Color? backgroundColor,
@@ -12,10 +12,7 @@ class DialogUtils {
     final colors = Theme.of(context).colorScheme;
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: backgroundColor  ,
-        content: Text(message),
-      ),
+      SnackBar(backgroundColor: backgroundColor, content: Text(message)),
     );
   }
 
@@ -54,7 +51,11 @@ class DialogUtils {
     );
   }
 
-  static Future<bool?> showLogoutDialog(BuildContext context) {
+  static Future<bool?> showLogoutDialog(
+    BuildContext context, {
+    required String tittle,
+    required String desc,
+  }) {
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     AppLocalizations? appLocalizations = AppLocalizations.of(context);
@@ -72,14 +73,9 @@ class DialogUtils {
               color: colors.error,
               size: 48.w,
             ),
-            title: Center(
-              child: Text(
-                appLocalizations!.logout,
-                style: textTheme.titleLarge,
-              ),
-            ),
+            title: Center(child: Text(tittle, style: textTheme.titleLarge)),
             content: Text(
-              appLocalizations.logoutConfirmationMessage,
+              desc,
               style: textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -90,7 +86,7 @@ class DialogUtils {
                   TextButton(
                     onPressed: () => Navigator.pop(context, false),
                     child: Text(
-                      appLocalizations.cancel,
+                      appLocalizations!.cancel,
                       style: textTheme.titleLarge,
                     ),
                   ),

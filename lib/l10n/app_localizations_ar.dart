@@ -175,4 +175,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get event_added_successfully => 'تمت إضافة الحدث بنجاح';
+
+  @override
+  String get delete_event => 'حذف الحدث';
+
+  @override
+  String get delete_event_message => 'هل تريد حذف هذا الحدث؟';
+
+  @override
+  String get event_deleted_successfully => 'تم حذف الحدث بنجاح';
 }

@@ -59,7 +59,10 @@
   "invalid_phone": "رقم الهاتف يجب أن يكون 11 رقم",
     "please_choose_time": "يرجى اختيار الوقت",
   "please_choose_date": "يرجى اختيار التاريخ",
-    "event_added_successfully": "تمت إضافة الحدث بنجاح"
+    "event_added_successfully": "تمت إضافة الحدث بنجاح",
+      "delete_event": "حذف الحدث",
+  "delete_event_message": "هل تريد حذف هذا الحدث؟",
+  "event_deleted_successfully": "تم حذف الحدث بنجاح"
 
 
 }
