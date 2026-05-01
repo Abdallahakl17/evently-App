@@ -67,7 +67,7 @@ class AddEvent extends HookWidget {
       DialogUtils.showSnackBar(
         context,
         backgroundColor: colors.primary,
-        "Event added successfully",
+        appLocalizations.event_added_successfully,
       );
 
       Navigator.pop(context);
