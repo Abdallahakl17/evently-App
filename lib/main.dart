@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.createEvent,
+          initialRoute: AppRoutes.login,
           routes: {
             AppRoutes.login: (context) => LoginScreen(),
             AppRoutes.register: (context) => RegisterScreen(),

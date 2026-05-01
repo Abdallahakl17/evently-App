@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:enently/core/model/category_model.dart';
 import 'package:enently/core/model/event_model.dart';
 import 'package:enently/core/model/user_model.dart';
 import 'package:enently/core/utils/utils_const.dart';
@@ -91,8 +92,26 @@ class StoreService {
     );
     DocumentReference<EventModel> eventDocument = eventsCollection.doc();
     event.id = eventDocument.id;
-     return eventDocument.set(event);
+    return eventDocument.set(event);
+  }
 
+  static Future<List<EventModel>> getEventFromFireStore(
+    BuildContext context, [
+    CategoryModel? selectedCategory,
+  ]) async {
+    final eventsCollection = getEventsCollection(context);
+
+    Query<EventModel> query = eventsCollection;
+
+    if (selectedCategory != null && selectedCategory.id != '0') {
+      query = query.where("categoryId", isEqualTo: selectedCategory.id);
+    }
+
+    final snapshot = await query.orderBy("dateTime").get();
+
+    final events = snapshot.docs.map((doc) => doc.data()).toList();
+
+    return events;
   }
 
   static Future<void> loadCurrentUser() async {

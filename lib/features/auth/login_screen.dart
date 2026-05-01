@@ -107,14 +107,16 @@ class LoginScreen extends HookWidget {
                   padding: REdgeInsets.symmetric(vertical: 16),
                   child: CustomTextField(
                     prefixIcon: Icon(Icons.email_outlined),
-                    validator: (value)=>Validators.validateEmail(context, value),
+                    validator: (value) =>
+                        Validators.validateEmail(context, value),
                     controller: emailController,
                     hintText: appLocalizations.enter_your_email,
                   ),
                 ),
                 CustomTextField(
                   prefixIcon: Icon(Icons.lock_outline),
-                  validator: (value)=>Validators.validatePassword(context, value),
+                  validator: (value) =>
+                      Validators.validatePassword(context, value),
                   controller: passwordController,
                   hintText: appLocalizations.enter_your_password,
                   suffixIcon: IconButton(
