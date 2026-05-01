@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  List<Widget> tabs = [HomeTab(), FavoriteTab(), PersonTab()];
+  List<Widget> tabs = [HomeTab(), FavouriteTab(), PersonTab()];
   @override
   Widget build(BuildContext context) {
     final homeProvider = context.watch<HomeProvider>();

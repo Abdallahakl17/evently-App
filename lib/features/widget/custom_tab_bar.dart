@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TabItem extends StatelessWidget {
-  TabItem({
+  const TabItem({
     super.key,
     required this.category,
     required this.selectedBgColor,
@@ -13,42 +13,33 @@ class TabItem extends StatelessWidget {
     required this.isSelected,
   });
 
-  CategoryModel category;
-  Color selectedBgColor;
-  Color selectedFgColor;
-  Color unSelectedBgColor;
-  Color unSelectedFgColor;
-  bool isSelected;
+  final CategoryModel category;
+  final bool isSelected;
+
+  final Color selectedBgColor;
+  final Color selectedFgColor;
+  final Color unSelectedBgColor;
+  final Color unSelectedFgColor;
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+
     return Container(
-      padding: REdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: REdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: isSelected ? selectedBgColor : unSelectedBgColor,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: colors.outlineVariant, width: 1.w),
       ),
-
-      child: Center(
-        child: Row(
-          children: [
-            Icon(
-              category.icon,
-              color: isSelected ? colors.onPrimary : colors.primary,
-            ),
-            SizedBox(width: 8.w),
-            Text(
-              category.name,
-              style: textTheme.bodyLarge?.copyWith(
-                color: isSelected ? colors.onPrimary : colors.onSurface,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              ),
-            ),
-          ],
-        ),
+      child: Row(
+        children: [
+          Icon(
+            category.icon,
+            color: isSelected ? selectedFgColor : colors.primary,
+          ),
+          SizedBox(width: 8),
+          Text(category.name),
+        ],
       ),
     );
   }

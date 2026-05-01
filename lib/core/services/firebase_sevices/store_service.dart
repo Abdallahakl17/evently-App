@@ -56,20 +56,6 @@ class StoreService {
     await getUsersCollection().doc(user.id).set(user, SetOptions(merge: true));
   }
 
-  static Future<List<EventModel>> getFavouriteEvents(
-    CollectionReference<EventModel> eventsCollection,
-  ) async {
-    final ids = UserModel.currentUser!.favouriteEventsIds;
-
-    if (ids.isEmpty) return [];
-
-    final snapshot = await eventsCollection
-        .where(FieldPath.documentId, whereIn: ids)
-        .get();
-
-    return snapshot.docs.map((doc) => doc.data()).toList();
-  }
-
   static CollectionReference<EventModel> getEventsCollection(
     BuildContext context,
   ) {
@@ -124,5 +110,24 @@ class StoreService {
     if (user != null) {
       UserModel.currentUser = user;
     }
+  }
+
+  static Future<List<EventModel>> getFavouriteEvents(
+    BuildContext context,
+  ) async {
+    final user = UserModel.currentUser;
+
+    if (user == null || user.favouriteEventsIds.isEmpty) {
+      return [];
+    }
+
+    final snapshot = await _db
+        .collection(RemoteConst.event)
+        .where("id", whereIn: user.favouriteEventsIds)
+        .get();
+
+    return snapshot.docs
+        .map((e) => EventModel.fromJson(e.data(), context))
+        .toList();
   }
 }

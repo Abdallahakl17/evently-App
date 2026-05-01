@@ -153,7 +153,7 @@ final ThemeData lightTheme = ThemeData(
 
   cardTheme: CardThemeData(
     margin: EdgeInsets.all(16.h),
-    color: LightAppColors.inputs,
+    color: lightColorScheme.surface,
     elevation: 0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.r),

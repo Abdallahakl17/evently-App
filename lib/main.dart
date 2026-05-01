@@ -1,4 +1,6 @@
+import 'package:enently/core/model/event_model.dart';
 import 'package:enently/features/home/tabs/add_event.dart';
+import 'package:enently/features/home/tabs/deatails_screen.dart';
 import 'package:enently/shared.dart';
 
 void main() async {
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.login,
+          initialRoute: AppRoutes.homeScreen,
           routes: {
             AppRoutes.login: (context) => LoginScreen(),
             AppRoutes.register: (context) => RegisterScreen(),
@@ -45,6 +47,11 @@ class MyApp extends StatelessWidget {
             AppRoutes.confirmresetpassword: (context) =>
                 const ConfirmResetPassword(),
             AppRoutes.createEvent: (context) => AddEvent(),
+            AppRoutes.deatailsScreen: (context) {
+              EventModel eventModel =
+                  ModalRoute.of(context)!.settings.arguments as EventModel;
+              return DeatailsScreen(eventModel: eventModel);
+            },
           },
           theme: lightTheme,
           darkTheme: darkTheme,
