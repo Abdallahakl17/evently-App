@@ -357,6 +357,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @title_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Title is required'**
+  String get title_required;
+
+  /// No description provided for @title_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Title must be at least 3 characters'**
+  String get title_too_short;
+
+  /// No description provided for @description_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Description is required'**
+  String get description_required;
+
+  /// No description provided for @description_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Description must be at least 10 characters'**
+  String get description_too_short;
+
+  /// No description provided for @invalid_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get invalid_email;
+
+  /// No description provided for @name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required'**
+  String get name_required;
+
+  /// No description provided for @password_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get password_too_short;
+
+  /// No description provided for @name_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be at least 2 characters'**
+  String get name_too_short;
+
+  /// No description provided for @phone_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone is required'**
+  String get phone_required;
+
+  /// No description provided for @invalid_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone must be 11 digits'**
+  String get invalid_phone;
+
+  /// No description provided for @please_choose_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a time'**
+  String get please_choose_time;
+
+  /// No description provided for @please_choose_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a date'**
+  String get please_choose_date;
+
+  /// No description provided for @event_added_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Event added successfully'**
+  String get event_added_successfully;
 }
 
 class _AppLocalizationsDelegate

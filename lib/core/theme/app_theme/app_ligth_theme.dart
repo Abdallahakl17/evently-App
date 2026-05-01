@@ -38,7 +38,15 @@ final ThemeData lightTheme = ThemeData(
   colorScheme: lightColorScheme,
   scaffoldBackgroundColor: lightColorScheme.surface,
   fontFamily: AppTextStyles.fontFamily,
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: lightColorScheme.error,
+    contentTextStyle: AppTextStyles.bodyMedium.copyWith(
+      color: lightColorScheme.onError,
+    ),
+    actionTextColor: lightColorScheme.primary,
 
+    elevation: 0,
+  ),
   //  TextTheme -
   textTheme: TextTheme(
     // Headlines

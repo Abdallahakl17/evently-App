@@ -52,7 +52,8 @@ class RegisterScreen extends HookWidget {
         final userModel = UserModel(
           id: userCredential.user!.uid,
           email: emailController.text.trim(),
-          name: nameController.text.trim(), favouriteEventsIds: [],
+          name: nameController.text.trim(),
+          favouriteEventsIds: [],
         );
 
         await StoreService.addUser(userModel);
@@ -97,24 +98,26 @@ class RegisterScreen extends HookWidget {
                   ),
                 ),
                 CustomTextField(
-                  validator: Validators.validateName,
+                  validator: (value) => Validators.validateName(context, value),
                   prefixIcon: Icon(Icons.person_2_outlined),
                   controller: nameController,
                   hintText: appLocalizations.enter_your_name,
                 ),
-        
+
                 Padding(
                   padding: REdgeInsets.symmetric(vertical: 16),
                   child: CustomTextField(
                     prefixIcon: Icon(Icons.email_outlined),
-                    validator: Validators.validateEmail,
+                    validator: (value) =>
+                        Validators.validateEmail(context, value),
                     controller: emailController,
                     hintText: appLocalizations.enter_your_email,
                   ),
                 ),
                 CustomTextField(
                   prefixIcon: Icon(Icons.lock_outline),
-                  validator: Validators.validatePassword,
+                  validator: (value) =>
+                      Validators.validatePassword(context, value),
                   controller: passwordController,
                   hintText: appLocalizations.enter_your_password,
                   suffixIcon: IconButton(
@@ -133,7 +136,8 @@ class RegisterScreen extends HookWidget {
                   padding: REdgeInsets.symmetric(vertical: 16),
                   child: CustomTextField(
                     prefixIcon: Icon(Icons.lock_outline),
-                    validator: Validators.validatePassword,
+                    validator: (value) =>
+                        Validators.validatePassword(context, value),
                     controller: confirmPasswordController,
                     hintText: appLocalizations.confirm_your_password,
                     suffixIcon: IconButton(
@@ -150,15 +154,15 @@ class RegisterScreen extends HookWidget {
                     obscureText: isConfirmPasswordSecure.value,
                   ),
                 ),
-        
+
                 SizedBox(height: 50.h),
-        
+
                 AppCustomButton(
                   text: appLocalizations.sing_up,
-        
+
                   onPressed: isLoading.value ? null : () => register(context),
                 ),
-        
+
                 Padding(
                   padding: REdgeInsets.symmetric(vertical: 24),
                   child: Row(
@@ -184,7 +188,6 @@ class RegisterScreen extends HookWidget {
                 SocialLoginSection(
                   onGoogleTap: () async {
                     await AuthService.signInWithGoogle();
-                    
                   },
                   isLoiginScreen: false,
                 ),

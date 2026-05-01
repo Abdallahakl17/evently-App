@@ -137,4 +137,45 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String get title_required => 'El título es obligatorio';
+
+  @override
+  String get title_too_short => 'El título debe tener al menos 3 caracteres';
+
+  @override
+  String get description_required => 'La descripción es obligatoria';
+
+  @override
+  String get description_too_short =>
+      'La descripción debe tener al menos 10 caracteres';
+
+  @override
+  String get invalid_email => 'Introduce un correo electrónico válido';
+
+  @override
+  String get name_required => 'El nombre es obligatorio';
+
+  @override
+  String get password_too_short =>
+      'La contraseña debe tener al menos 6 caracteres';
+
+  @override
+  String get name_too_short => 'El nombre debe tener al menos 2 caracteres';
+
+  @override
+  String get phone_required => 'El número de teléfono es obligatorio';
+
+  @override
+  String get invalid_phone => 'El número de teléfono debe tener 11 dígitos';
+
+  @override
+  String get please_choose_time => 'Por favor, elige la hora';
+
+  @override
+  String get please_choose_date => 'Por favor, elige la fecha';
+
+  @override
+  String get event_added_successfully => 'Evento agregado correctamente';
 }

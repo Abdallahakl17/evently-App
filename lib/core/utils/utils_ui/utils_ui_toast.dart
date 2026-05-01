@@ -4,6 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DialogUtils {
+   static void showSnackBar(
+    BuildContext context,
+    String message, {
+    Color? backgroundColor,
+  }) {
+    final colors = Theme.of(context).colorScheme;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: backgroundColor  ,
+        content: Text(message),
+      ),
+    );
+  }
+
   static void showLoading(BuildContext context, {bool dismissible = true}) {
     showDialog(
       barrierDismissible: dismissible,

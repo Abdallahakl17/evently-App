@@ -33,7 +33,7 @@ class ConfirmResetPassword extends HookWidget {
                 Spacer(flex: 1),
                 CustomTextField(
                   prefixIcon: Icon(Icons.email_outlined),
-                  validator: Validators.validateEmail,
+                  validator: (value)=>Validators.validateEmail(context, value),
                   controller: emailController,
                   hintText: appLocalizations.enter_your_email,
                 ),

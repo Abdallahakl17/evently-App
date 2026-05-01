@@ -42,5 +42,24 @@
 "exhibition":"Exhibition",
 "logoutConfirmationMessage": "Are you sure you want to logout?",
 "ok": "OK",
-"cancel": "Cancel"
+"cancel": "Cancel",
+
+  "title_required": "Title is required",
+  "title_too_short": "Title must be at least 3 characters",
+
+  "description_required": "Description is required",
+  "description_too_short": "Description must be at least 10 characters",
+
+  "invalid_email": "Enter a valid email",
+
+  "name_required": "Name is required",
+
+  "password_too_short": "Password must be at least 6 characters",
+  "name_too_short": "Name must be at least 2 characters",
+  "phone_required": "Phone is required",
+  "invalid_phone": "Phone must be 11 digits",
+  "please_choose_time": "Please choose a time",
+  "please_choose_date": "Please choose a date",
+  "event_added_successfully": "Event added successfully"
+
 }

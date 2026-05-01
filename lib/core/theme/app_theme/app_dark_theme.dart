@@ -39,7 +39,7 @@ final ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: darkColorScheme.surface,
   fontFamily: AppTextStyles.fontFamily,
 
-   textTheme: TextTheme(
+  textTheme: TextTheme(
     // Headlines
     headlineLarge: AppTextStyles.headlineLarge.copyWith(
       color: DarkAppColors.mainText,
@@ -87,7 +87,15 @@ final ThemeData darkTheme = ThemeData(
       color: DarkAppColors.mainText,
     ),
   ),
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: darkColorScheme.error,
+    contentTextStyle: AppTextStyles.bodyMedium.copyWith(
+      color: darkColorScheme.onError,
+    ),
+    actionTextColor: darkColorScheme.primary,
 
+    elevation: 0,
+  ),
   dividerTheme: DividerThemeData(color: DarkAppColors.mainColor, thickness: 1),
 
   floatingActionButtonTheme: FloatingActionButtonThemeData(

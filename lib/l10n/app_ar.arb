@@ -41,5 +41,25 @@
   "exhibition": "معرض",
   "logoutConfirmationMessage": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
   "ok": "موافق",
-  "cancel": "إلغاء"
+  "cancel": "إلغاء",
+  
+  "title_required": "العنوان مطلوب",
+  "title_too_short": "يجب أن يكون العنوان على الأقل 3 أحرف",
+
+  "description_required": "الوصف مطلوب",
+  "description_too_short": "يجب أن يكون الوصف على الأقل 10 أحرف",
+
+  "invalid_email": "أدخل بريد إلكتروني صحيح",
+
+  "name_required": "الاسم مطلوب",
+
+  "password_too_short": "كلمة المرور يجب أن تكون على الأقل 6 أحرف",
+  "name_too_short": "الاسم يجب أن يكون على الأقل حرفين",
+  "phone_required": "رقم الهاتف مطلوب",
+  "invalid_phone": "رقم الهاتف يجب أن يكون 11 رقم",
+    "please_choose_time": "يرجى اختيار الوقت",
+  "please_choose_date": "يرجى اختيار التاريخ",
+    "event_added_successfully": "تمت إضافة الحدث بنجاح"
+
+
 }

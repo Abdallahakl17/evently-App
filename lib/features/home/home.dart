@@ -1,3 +1,4 @@
+import 'package:enently/core/assets/routes_const.dart';
 import 'package:enently/core/provider/config/provider.theme.dart';
 import 'package:enently/core/provider/home/home_provider.dart';
 import 'package:enently/features/home/tabs/favorite_tab.dart';
@@ -21,7 +22,9 @@ class HomeScreen extends StatelessWidget {
       extendBody: true,
       body: tabs[homeProvider.index],
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.createEvent);
+        },
         child: Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNavigationBar(

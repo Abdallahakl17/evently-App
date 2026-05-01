@@ -136,4 +136,44 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get title_required => 'Title is required';
+
+  @override
+  String get title_too_short => 'Title must be at least 3 characters';
+
+  @override
+  String get description_required => 'Description is required';
+
+  @override
+  String get description_too_short =>
+      'Description must be at least 10 characters';
+
+  @override
+  String get invalid_email => 'Enter a valid email';
+
+  @override
+  String get name_required => 'Name is required';
+
+  @override
+  String get password_too_short => 'Password must be at least 6 characters';
+
+  @override
+  String get name_too_short => 'Name must be at least 2 characters';
+
+  @override
+  String get phone_required => 'Phone is required';
+
+  @override
+  String get invalid_phone => 'Phone must be 11 digits';
+
+  @override
+  String get please_choose_time => 'Please choose a time';
+
+  @override
+  String get please_choose_date => 'Please choose a date';
+
+  @override
+  String get event_added_successfully => 'Event added successfully';
 }

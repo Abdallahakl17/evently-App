@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enently/core/model/event_model.dart';
 import 'package:enently/core/model/user_model.dart';
 import 'package:enently/core/utils/utils_const.dart';
+import 'package:enently/shared.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class StoreService {
@@ -64,6 +67,32 @@ class StoreService {
         .get();
 
     return snapshot.docs.map((doc) => doc.data()).toList();
+  }
+
+  static CollectionReference<EventModel> getEventsCollection(
+    BuildContext context,
+  ) {
+    CollectionReference<EventModel> eventsCollection = _db
+        .collection(RemoteConst.event)
+        .withConverter<EventModel>(
+          fromFirestore: (snapshot, _) =>
+              EventModel.fromJson(snapshot.data()!, context),
+          toFirestore: (event, _) => event.toJson(),
+        );
+    return eventsCollection;
+  }
+
+  static Future<void> addEventToFireStore(
+    EventModel event,
+    BuildContext context,
+  ) {
+    CollectionReference<EventModel> eventsCollection = getEventsCollection(
+      context,
+    );
+    DocumentReference<EventModel> eventDocument = eventsCollection.doc();
+    event.id = eventDocument.id;
+     return eventDocument.set(event);
+
   }
 
   static Future<void> loadCurrentUser() async {

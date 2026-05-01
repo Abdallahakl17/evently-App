@@ -29,7 +29,7 @@ class EventModel {
           context,
         ).firstWhere((category) => category.id == json?['categoryId']),
       );
-  Map<String, dynamic> toJson() {
+   Map<String, dynamic> toJson() {
     return {
       'ownerId': ownerId,
       'id': id,

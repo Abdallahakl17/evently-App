@@ -1,3 +1,4 @@
+import 'package:enently/features/home/tabs/add_event.dart';
 import 'package:enently/shared.dart';
 
 void main() async {
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.login,
+          initialRoute: AppRoutes.createEvent,
           routes: {
             AppRoutes.login: (context) => LoginScreen(),
             AppRoutes.register: (context) => RegisterScreen(),
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
             AppRoutes.resetpassword: (context) => const ResestPassword(),
             AppRoutes.confirmresetpassword: (context) =>
                 const ConfirmResetPassword(),
-            // AppRoutes.createEvent: (context) => const CreateEventScreen(),
+            AppRoutes.createEvent: (context) => AddEvent(),
           },
           theme: lightTheme,
           darkTheme: darkTheme,

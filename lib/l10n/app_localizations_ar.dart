@@ -136,4 +136,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cancel => 'إلغاء';
+
+  @override
+  String get title_required => 'العنوان مطلوب';
+
+  @override
+  String get title_too_short => 'يجب أن يكون العنوان على الأقل 3 أحرف';
+
+  @override
+  String get description_required => 'الوصف مطلوب';
+
+  @override
+  String get description_too_short => 'يجب أن يكون الوصف على الأقل 10 أحرف';
+
+  @override
+  String get invalid_email => 'أدخل بريد إلكتروني صحيح';
+
+  @override
+  String get name_required => 'الاسم مطلوب';
+
+  @override
+  String get password_too_short => 'كلمة المرور يجب أن تكون على الأقل 6 أحرف';
+
+  @override
+  String get name_too_short => 'الاسم يجب أن يكون على الأقل حرفين';
+
+  @override
+  String get phone_required => 'رقم الهاتف مطلوب';
+
+  @override
+  String get invalid_phone => 'رقم الهاتف يجب أن يكون 11 رقم';
+
+  @override
+  String get please_choose_time => 'يرجى اختيار الوقت';
+
+  @override
+  String get please_choose_date => 'يرجى اختيار التاريخ';
+
+  @override
+  String get event_added_successfully => 'تمت إضافة الحدث بنجاح';
 }

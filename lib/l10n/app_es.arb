@@ -41,5 +41,25 @@
   "exhibition": "Exposición",
   "logoutConfirmationMessage": "¿Estás seguro de que deseas cerrar sesión?",
   "ok": "Aceptar",
-  "cancel": "Cancelar"
+  "cancel": "Cancelar",
+  
+  "title_required": "El título es obligatorio",
+  "title_too_short": "El título debe tener al menos 3 caracteres",
+
+  "description_required": "La descripción es obligatoria",
+  "description_too_short": "La descripción debe tener al menos 10 caracteres",
+
+  "invalid_email": "Introduce un correo electrónico válido",
+
+  "name_required": "El nombre es obligatorio",
+
+  "password_too_short": "La contraseña debe tener al menos 6 caracteres",
+  "name_too_short": "El nombre debe tener al menos 2 caracteres",
+  "phone_required": "El número de teléfono es obligatorio",
+  "invalid_phone": "El número de teléfono debe tener 11 dígitos",
+  "please_choose_time": "Por favor, elige la hora",
+  "please_choose_date": "Por favor, elige la fecha",
+    "event_added_successfully": "Evento agregado correctamente"
+
+
 }

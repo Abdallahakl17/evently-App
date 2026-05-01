@@ -20,14 +20,14 @@ class CustomArrowBack extends StatelessWidget {
             padding: EdgeInsets.all(4.w),
 
             decoration: BoxDecoration(
-              border: Border.all(color: colorScheme.secondary),
+              border: Border.all(color: colorScheme.outlineVariant),
               color: colorScheme.surfaceContainer,
               borderRadius: BorderRadius.circular(8.r),
             ),
 
             child: Icon(
               Icons.arrow_back_ios_new,
-              size: 24.w,
+              size: 22.w,
               color: colorScheme.onSurface,
             ),
           ),
