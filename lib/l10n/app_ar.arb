@@ -62,7 +62,10 @@
     "event_added_successfully": "تمت إضافة الحدث بنجاح",
       "delete_event": "حذف الحدث",
   "delete_event_message": "هل تريد حذف هذا الحدث؟",
-  "event_deleted_successfully": "تم حذف الحدث بنجاح"
+  "event_deleted_successfully": "تم حذف الحدث بنجاح",
+    "edit_event": "تعديل الحدث",
+  "event_updated_successfully": "تم تعديل الحدث بنجاح"
+ 
 
 
 }

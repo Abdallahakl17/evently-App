@@ -46,7 +46,12 @@ class MyApp extends StatelessWidget {
             AppRoutes.resetpassword: (context) => const ResestPassword(),
             AppRoutes.confirmresetpassword: (context) =>
                 const ConfirmResetPassword(),
-            AppRoutes.createEvent: (context) => AddEvent(),
+            AppRoutes.createEvent: (context) { 
+              
+              EventModel? eventModel =
+                  ModalRoute.of(context)!.settings.arguments as EventModel;
+              return AddEvent(eventModel: eventModel);
+            },   
             AppRoutes.deatailsScreen: (context) {
               EventModel eventModel =
                   ModalRoute.of(context)!.settings.arguments as EventModel;

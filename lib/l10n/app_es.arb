@@ -62,7 +62,9 @@
     "event_added_successfully": "Evento agregado correctamente",
       "delete_event": "Eliminar evento",
   "delete_event_message": "¿Quieres eliminar este evento?",
-  "event_deleted_successfully": "Evento eliminado correctamente"
+  "event_deleted_successfully": "Evento eliminado correctamente",
+   "edit_event": "Editar evento",
+  "event_updated_successfully": "Evento actualizado correctamente"
 
 
 }

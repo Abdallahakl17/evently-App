@@ -45,12 +45,18 @@ class DeatailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const CustomArrowBack(),
+        leading: CustomArrowBack(),
         title: Text(appLocalizations.event_details),
         actions: isOwner
             ? [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.createEvent,
+                      arguments: eventModel,
+                    );
+                  },
                   icon: Icon(Icons.edit, color: colors.primary),
                 ),
                 IconButton(

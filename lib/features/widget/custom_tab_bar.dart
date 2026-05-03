@@ -24,11 +24,13 @@ class TabItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
 
     return Container(
       padding: REdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: isSelected ? selectedBgColor : unSelectedBgColor,
+        border: Border.all(color: colors.outlineVariant, width: 1.w),
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Row(
@@ -38,7 +40,12 @@ class TabItem extends StatelessWidget {
             color: isSelected ? selectedFgColor : colors.primary,
           ),
           SizedBox(width: 8),
-          Text(category.name),
+          Text(
+            category.name,
+            style: textTheme.titleLarge!.copyWith(
+              color: isSelected ? selectedFgColor : colors.onSurface,
+            ),
+          ),
         ],
       ),
     );

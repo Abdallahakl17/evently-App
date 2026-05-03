@@ -13,20 +13,33 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../../shared.dart';
 
 class AddEvent extends HookWidget {
-  const AddEvent({super.key});
-
+  AddEvent({super.key, this.eventModel});
+  EventModel? eventModel;
   @override
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
     final textTheme = Theme.of(context).textTheme;
     final categories = CategoryModel.getCategories(context);
 
-    final selectedCategory = useState<CategoryModel>(categories[0]);
-    final selectedIndex = useState(0);
-    final selectedDateTime = useState<DateTime?>(null);
-    final selectedTime = useState<TimeOfDay?>(null);
-    final titleController = useTextEditingController();
-    final descController = useTextEditingController();
+    final selectedCategory = useState<CategoryModel>(
+      eventModel?.category ?? categories[0],
+    );
+    final selectedIndex = useState(
+      eventModel != null ? categories.indexOf(eventModel!.category!) : 0,
+    );
+    final selectedDateTime = useState<DateTime?>(eventModel?.dateTime);
+    final selectedTime = useState<TimeOfDay?>(
+      eventModel?.dateTime != null
+          ? TimeOfDay.fromDateTime(eventModel!.dateTime!)
+          : null,
+    );
+    final titleController = useTextEditingController(
+      text: eventModel?.title ?? '',
+    );
+
+    final descController = useTextEditingController(
+      text: eventModel?.description ?? '',
+    );
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final colors = Theme.of(context).colorScheme;
 
@@ -64,16 +77,37 @@ class AddEvent extends HookWidget {
 
       await StoreService.addEventToFireStore(event, context);
 
-     
+      if (context.mounted) {
+        Navigator.pop(context);
 
-   if (context.mounted) {
-          Navigator.pop(context);
+        Navigator.pop(context);
+      }
+      DialogUtils.showToastMessage(
+        message: appLocalizations.event_added_successfully,
+        bgColor: Colors.green,
+      );
+    }
 
-          Navigator.pop(context);
-        } DialogUtils.showToastMessage(
-          message: appLocalizations.event_added_successfully,
-          bgColor: Colors.green,
-        );
+    Future<void> updateEvent() async {
+      eventModel!
+        ..title = titleController.text
+        ..description = descController.text
+        ..dateTime = selectedDateTime.value
+        ..category = selectedCategory.value;
+
+      DialogUtils.showLoading(context);
+
+      await StoreService.editEvent(context, eventModel!);
+
+      if (context.mounted) {
+        Navigator.pop(context);
+        Navigator.pop(context);
+      }
+
+      DialogUtils.showToastMessage(
+        message: appLocalizations.event_updated_successfully,
+        bgColor: Colors.green,
+      );
     }
 
     // for the Time only
@@ -101,7 +135,11 @@ class AddEvent extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         leading: CustomArrowBack(key: key),
-        title: Text(appLocalizations.add_event),
+        title: Text(
+          eventModel == null
+              ? appLocalizations.add_event
+              : appLocalizations.edit_event,
+        ),
       ),
       body: Form(
         key: formKey,
@@ -206,7 +244,9 @@ class AddEvent extends HookWidget {
               const Spacer(),
 
               AppCustomButton(
-                text: appLocalizations.add_event,
+                text: eventModel == null
+                    ? appLocalizations.add_event
+                    : appLocalizations.edit_event,
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     if (selectedDateTime.value == null) {
@@ -228,7 +268,11 @@ class AddEvent extends HookWidget {
                       return;
                     }
 
-                    await addEvent();
+                    if (eventModel == null) {
+                      await addEvent();
+                    } else {
+                      await updateEvent();
+                    }
                   }
                 },
               ),
