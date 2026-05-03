@@ -1,113 +1,165 @@
 import 'package:enently/core/theme/app_color/app_colors_ligth.dart';
 import 'package:enently/core/theme/app_text/app_text.dart';
-import 'package:enently/core/theme/app_text/app_text_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final lightColorScheme = ColorScheme.light(
+  // Primary
   primary: LightAppColors.mainColor,
-  secondary: LightAppColors.stroke,
+  onPrimary: LightAppColors.white,
 
+  // Secondary
+  secondary: LightAppColors.mainColor,
+  onSecondary: LightAppColors.white,
+
+  // Surface
   surface: LightAppColors.background,
-  surfaceContainerHighest: LightAppColors.inputs,
-
-  error: LightAppColors.red,
-
   onSurface: LightAppColors.mainText,
+
+  // Containers
+  surfaceContainerHighest: LightAppColors.inputs,
+  surfaceContainer: LightAppColors.inputs,
+
+  // Variants
   onSurfaceVariant: LightAppColors.secondaryText,
 
-  onPrimary: LightAppColors.inputs,
+  // Outline
   outline: LightAppColors.disable,
+  outlineVariant: LightAppColors.stroke,
+
+  // Error
+  error: LightAppColors.red,
+  onError: LightAppColors.white,
 );
 
 final ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
-
   colorScheme: lightColorScheme,
-
   scaffoldBackgroundColor: lightColorScheme.surface,
+  fontFamily: AppTextStyles.fontFamily,
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: lightColorScheme.error,
+    contentTextStyle: AppTextStyles.bodyMedium.copyWith(
+      color: lightColorScheme.onError,
+    ),
+    actionTextColor: lightColorScheme.primary,
+
+    elevation: 0,
+  ),
+  //  TextTheme -
+  textTheme: TextTheme(
+    // Headlines
+    headlineLarge: AppTextStyles.headlineLarge.copyWith(
+      color: LightAppColors.mainText,
+    ),
+
+    // Titles
+    titleLarge: AppTextStyles.titleLarge.copyWith(
+      color: LightAppColors.mainText,
+    ),
+    titleMedium: AppTextStyles.titleMedium.copyWith(
+      color: LightAppColors.mainColor,
+    ),
+    titleSmall: AppTextStyles.titleSmall.copyWith(
+      color: LightAppColors.mainColor,
+    ),
+
+    // Body
+    bodyLarge: AppTextStyles.bodyLarge.copyWith(color: LightAppColors.mainText),
+    bodyMedium: AppTextStyles.bodyMedium.copyWith(
+      color: LightAppColors.secondaryText,
+    ),
+    bodySmall: AppTextStyles.bodySmall.copyWith(
+      color: LightAppColors.secondaryText,
+    ),
+
+    // Labels
+    labelLarge: AppTextStyles.labelLarge.copyWith(color: LightAppColors.white),
+    labelMedium: AppTextStyles.labelMedium.copyWith(
+      color: LightAppColors.secondaryText,
+    ),
+    labelSmall: AppTextStyles.labelSmall.copyWith(
+      color: LightAppColors.mainColor,
+      decoration: TextDecoration.underline,
+      decorationColor: LightAppColors.mainColor,
+    ),
+  ),
 
   appBarTheme: AppBarTheme(
     backgroundColor: lightColorScheme.surface,
-    foregroundColor: lightColorScheme.onSurface,
+    foregroundColor: LightAppColors.mainText,
     centerTitle: true,
+    titleTextStyle: AppTextStyles.titleLarge.copyWith(
+      color: LightAppColors.mainText,
+    ),
   ),
 
-  dividerColor: lightColorScheme.secondary,
+  dividerTheme: DividerThemeData(color: LightAppColors.stroke, thickness: 1),
 
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: lightColorScheme.primary,
     foregroundColor: lightColorScheme.onPrimary,
+    elevation: 3,
+    shape: CircleBorder(),
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: lightColorScheme.surfaceContainerHighest,
-    selectedItemColor: lightColorScheme.primary,
-    unselectedItemColor: lightColorScheme.onSurfaceVariant,
+    backgroundColor: LightAppColors.inputs,
+    selectedItemColor: LightAppColors.mainColor,
+    unselectedItemColor: LightAppColors.secondaryText,
     type: BottomNavigationBarType.fixed,
+    selectedLabelStyle: AppTextStyles.labelSmall,
+    unselectedLabelStyle: AppTextStyles.labelSmall,
   ),
 
   inputDecorationTheme: InputDecorationTheme(
-    hintStyle: TextStyle(
-      fontSize: 12.sp,
-      color: lightColorScheme.onSurfaceVariant,
+    hintStyle: AppTextStyles.bodyMedium.copyWith(
+      color: LightAppColors.secondaryText,
     ),
     filled: true,
-    fillColor: lightColorScheme.surfaceContainerHighest,
-
+    fillColor: LightAppColors.inputs,
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
-      borderSide: BorderSide(color: lightColorScheme.secondary),
+      borderSide: BorderSide(color: LightAppColors.stroke),
     ),
-
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
-      borderSide: BorderSide(color: lightColorScheme.primary),
+      borderSide: BorderSide(color: LightAppColors.mainColor, width: 2),
     ),
-
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
-
-      borderSide: BorderSide(color: lightColorScheme.error),
+      borderSide: BorderSide(color: LightAppColors.red),
     ),
-
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
-
-      borderSide: BorderSide(color: lightColorScheme.error),
+      borderSide: BorderSide(color: LightAppColors.red, width: 2),
     ),
-
-    prefixIconColor: lightColorScheme.outline,
-    suffixIconColor: lightColorScheme.outline,
+    prefixIconColor: LightAppColors.disable,
+    suffixIconColor: LightAppColors.disable,
   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: lightColorScheme.primary,
-      foregroundColor: lightColorScheme.onPrimary,
-
+      minimumSize: Size(double.infinity, 48.h),
+      backgroundColor: LightAppColors.mainColor,
+      foregroundColor: LightAppColors.white,
       textStyle: AppTextStyles.titleMedium.copyWith(
-        color: lightColorScheme.onPrimary,
+        color: LightAppColors.white,
       ),
-
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
     ),
   ),
 
   cardTheme: CardThemeData(
-    color: lightColorScheme.surfaceContainerHighest,
+    margin: EdgeInsets.all(16.h),
+    color: lightColorScheme.surface,
+    elevation: 0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.r),
-      side: BorderSide(color: lightColorScheme.secondary),
+      side: BorderSide(color: LightAppColors.stroke),
     ),
   ),
 
-  iconTheme: IconThemeData(color: lightColorScheme.primary),
-
-  textTheme: AppTextThemeBuilder.build(lightColorScheme),
+  iconTheme: IconThemeData(color: LightAppColors.mainColor),
 );
-
-
-// 000F30 dark
-// F4F7FF ligth

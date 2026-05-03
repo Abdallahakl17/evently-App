@@ -21,6 +21,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get forget_password => 'هل نسيت كلمة المرور؟';
 
   @override
+  String get forget_passwor_reset => 'هل نسيت كلمة المرور';
+
+  @override
+  String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
   String get login => 'تسجيل الدخول';
 
   @override
@@ -34,6 +40,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login_with_google => 'تسجيل الدخول باستخدام جوجل';
+
+  @override
+  String get signup_with_google => 'إنشاء حساب باستخدام Google';
 
   @override
   String get create_your_account => 'إنشاء حسابك';
@@ -118,4 +127,67 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exhibition => 'معرض';
+
+  @override
+  String get logoutConfirmationMessage => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get ok => 'موافق';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get title_required => 'العنوان مطلوب';
+
+  @override
+  String get title_too_short => 'يجب أن يكون العنوان على الأقل 3 أحرف';
+
+  @override
+  String get description_required => 'الوصف مطلوب';
+
+  @override
+  String get description_too_short => 'يجب أن يكون الوصف على الأقل 10 أحرف';
+
+  @override
+  String get invalid_email => 'أدخل بريد إلكتروني صحيح';
+
+  @override
+  String get name_required => 'الاسم مطلوب';
+
+  @override
+  String get password_too_short => 'كلمة المرور يجب أن تكون على الأقل 6 أحرف';
+
+  @override
+  String get name_too_short => 'الاسم يجب أن يكون على الأقل حرفين';
+
+  @override
+  String get phone_required => 'رقم الهاتف مطلوب';
+
+  @override
+  String get invalid_phone => 'رقم الهاتف يجب أن يكون 11 رقم';
+
+  @override
+  String get please_choose_time => 'يرجى اختيار الوقت';
+
+  @override
+  String get please_choose_date => 'يرجى اختيار التاريخ';
+
+  @override
+  String get event_added_successfully => 'تمت إضافة الحدث بنجاح';
+
+  @override
+  String get delete_event => 'حذف الحدث';
+
+  @override
+  String get delete_event_message => 'هل تريد حذف هذا الحدث؟';
+
+  @override
+  String get event_deleted_successfully => 'تم حذف الحدث بنجاح';
+
+  @override
+  String get edit_event => 'تعديل الحدث';
+
+  @override
+  String get event_updated_successfully => 'تم تعديل الحدث بنجاح';
 }

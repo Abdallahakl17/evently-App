@@ -124,6 +124,18 @@ abstract class AppLocalizations {
   /// **'Forget password?'**
   String get forget_password;
 
+  /// No description provided for @forget_passwor_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget password'**
+  String get forget_passwor_reset;
+
+  /// No description provided for @reset_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get reset_password;
+
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
@@ -133,7 +145,7 @@ abstract class AppLocalizations {
   /// No description provided for @dont_have_an_account.
   ///
   /// In en, this message translates to:
-  /// **'Don\'t have an account'**
+  /// **'Don\'t have an account? '**
   String get dont_have_an_account;
 
   /// No description provided for @sing_up.
@@ -153,6 +165,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login with google'**
   String get login_with_google;
+
+  /// No description provided for @signup_with_google.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up with Google'**
+  String get signup_with_google;
 
   /// No description provided for @create_your_account.
   ///
@@ -321,6 +339,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exhibition'**
   String get exhibition;
+
+  /// No description provided for @logoutConfirmationMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutConfirmationMessage;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @title_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Title is required'**
+  String get title_required;
+
+  /// No description provided for @title_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Title must be at least 3 characters'**
+  String get title_too_short;
+
+  /// No description provided for @description_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Description is required'**
+  String get description_required;
+
+  /// No description provided for @description_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Description must be at least 10 characters'**
+  String get description_too_short;
+
+  /// No description provided for @invalid_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get invalid_email;
+
+  /// No description provided for @name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required'**
+  String get name_required;
+
+  /// No description provided for @password_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get password_too_short;
+
+  /// No description provided for @name_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be at least 2 characters'**
+  String get name_too_short;
+
+  /// No description provided for @phone_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone is required'**
+  String get phone_required;
+
+  /// No description provided for @invalid_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone must be 11 digits'**
+  String get invalid_phone;
+
+  /// No description provided for @please_choose_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a time'**
+  String get please_choose_time;
+
+  /// No description provided for @please_choose_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a date'**
+  String get please_choose_date;
+
+  /// No description provided for @event_added_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Event added successfully'**
+  String get event_added_successfully;
+
+  /// No description provided for @delete_event.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Event'**
+  String get delete_event;
+
+  /// No description provided for @delete_event_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to delete this event?'**
+  String get delete_event_message;
+
+  /// No description provided for @event_deleted_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Event deleted successfully'**
+  String get event_deleted_successfully;
+
+  /// No description provided for @edit_event.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Event'**
+  String get edit_event;
+
+  /// No description provided for @event_updated_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Event updated successfully'**
+  String get event_updated_successfully;
 }
 
 class _AppLocalizationsDelegate

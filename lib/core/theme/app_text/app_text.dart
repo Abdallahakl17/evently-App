@@ -4,63 +4,77 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 abstract class AppTextStyles {
   static const fontFamily = "Poppins";
 
-  static final headlineLarge = TextStyle(
+  //
+  static TextStyle headlineLarge = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.w600,
     fontFamily: fontFamily,
+    height: 1.3,
   );
 
-  static final titleLarge = TextStyle(
+  //
+  static TextStyle titleLarge = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w600,
     fontFamily: fontFamily,
+    height: 1.4,
   );
 
-  static final titleMedium = TextStyle(
+  static TextStyle titleMedium = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight.w500,
     fontFamily: fontFamily,
+    height: 1.4,
   );
 
-  static final titleSmall = TextStyle(
+  static TextStyle titleSmall = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     fontFamily: fontFamily,
+    height: 1.4,
   );
 
-  static final bodyLarge = TextStyle(
+  //
+  static TextStyle bodyLarge = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     fontFamily: fontFamily,
+    height: 1.5,
   );
 
-  static final bodyMedium = TextStyle(
+  static TextStyle bodyMedium = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     fontFamily: fontFamily,
+    height: 1.5,
   );
 
-  static final bodySmall = TextStyle(
+  static TextStyle bodySmall = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,
     fontFamily: fontFamily,
+    height: 1.5,
   );
 
-  static final labelLarge = TextStyle(
+  //
+  static TextStyle labelLarge = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
     fontFamily: fontFamily,
+    height: 1.2,
   );
 
-  static final labelMedium = TextStyle(
+  static TextStyle labelMedium = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w500,
     fontFamily: fontFamily,
+    height: 1.2,
   );
 
-  static final labelSmall = TextStyle(
+  static TextStyle labelSmall = TextStyle(
     fontSize: 14.sp,
-    fontWeight: FontWeight.w600,
-    fontFamily: fontFamily,decoration: TextDecoration.underline
+    fontWeight: FontWeight.w500,
+    fontFamily: fontFamily,
+    height: 1.2,
   );
 }

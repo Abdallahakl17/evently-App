@@ -21,10 +21,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forget_password => 'Forget password?';
 
   @override
+  String get forget_passwor_reset => 'Forget password';
+
+  @override
+  String get reset_password => 'Reset password';
+
+  @override
   String get login => 'Login';
 
   @override
-  String get dont_have_an_account => 'Don\'t have an account';
+  String get dont_have_an_account => 'Don\'t have an account? ';
 
   @override
   String get sing_up => 'Sign-Up';
@@ -34,6 +40,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login_with_google => 'Login with google';
+
+  @override
+  String get signup_with_google => 'Sign up with Google';
 
   @override
   String get create_your_account => 'Create your account';
@@ -118,4 +127,68 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exhibition => 'Exhibition';
+
+  @override
+  String get logoutConfirmationMessage => 'Are you sure you want to logout?';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get title_required => 'Title is required';
+
+  @override
+  String get title_too_short => 'Title must be at least 3 characters';
+
+  @override
+  String get description_required => 'Description is required';
+
+  @override
+  String get description_too_short =>
+      'Description must be at least 10 characters';
+
+  @override
+  String get invalid_email => 'Enter a valid email';
+
+  @override
+  String get name_required => 'Name is required';
+
+  @override
+  String get password_too_short => 'Password must be at least 6 characters';
+
+  @override
+  String get name_too_short => 'Name must be at least 2 characters';
+
+  @override
+  String get phone_required => 'Phone is required';
+
+  @override
+  String get invalid_phone => 'Phone must be 11 digits';
+
+  @override
+  String get please_choose_time => 'Please choose a time';
+
+  @override
+  String get please_choose_date => 'Please choose a date';
+
+  @override
+  String get event_added_successfully => 'Event added successfully';
+
+  @override
+  String get delete_event => 'Delete Event';
+
+  @override
+  String get delete_event_message => 'Do you want to delete this event?';
+
+  @override
+  String get event_deleted_successfully => 'Event deleted successfully';
+
+  @override
+  String get edit_event => 'Edit Event';
+
+  @override
+  String get event_updated_successfully => 'Event updated successfully';
 }

@@ -18,13 +18,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enter_your_password => 'Introduce tu contraseña';
 
   @override
-  String get forget_password => '¿Olvidaste tu contraseña?';
+  String get forget_password => 'Olvidaste tu contraseña?';
+
+  @override
+  String get forget_passwor_reset => 'Olvidaste tu contraseña';
+
+  @override
+  String get reset_password => 'Restablecer contraseña';
 
   @override
   String get login => 'Iniciar sesión';
 
   @override
-  String get dont_have_an_account => '¿No tienes una cuenta?';
+  String get dont_have_an_account => 'No tienes una cuenta?';
 
   @override
   String get sing_up => 'Registrarse';
@@ -34,6 +40,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get login_with_google => 'Iniciar sesión con Google';
+
+  @override
+  String get signup_with_google => 'Registrarse con Google';
 
   @override
   String get create_your_account => 'Crea tu cuenta';
@@ -118,4 +127,70 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get exhibition => 'Exposición';
+
+  @override
+  String get logoutConfirmationMessage =>
+      '¿Estás seguro de que deseas cerrar sesión?';
+
+  @override
+  String get ok => 'Aceptar';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get title_required => 'El título es obligatorio';
+
+  @override
+  String get title_too_short => 'El título debe tener al menos 3 caracteres';
+
+  @override
+  String get description_required => 'La descripción es obligatoria';
+
+  @override
+  String get description_too_short =>
+      'La descripción debe tener al menos 10 caracteres';
+
+  @override
+  String get invalid_email => 'Introduce un correo electrónico válido';
+
+  @override
+  String get name_required => 'El nombre es obligatorio';
+
+  @override
+  String get password_too_short =>
+      'La contraseña debe tener al menos 6 caracteres';
+
+  @override
+  String get name_too_short => 'El nombre debe tener al menos 2 caracteres';
+
+  @override
+  String get phone_required => 'El número de teléfono es obligatorio';
+
+  @override
+  String get invalid_phone => 'El número de teléfono debe tener 11 dígitos';
+
+  @override
+  String get please_choose_time => 'Por favor, elige la hora';
+
+  @override
+  String get please_choose_date => 'Por favor, elige la fecha';
+
+  @override
+  String get event_added_successfully => 'Evento agregado correctamente';
+
+  @override
+  String get delete_event => 'Eliminar evento';
+
+  @override
+  String get delete_event_message => '¿Quieres eliminar este evento?';
+
+  @override
+  String get event_deleted_successfully => 'Evento eliminado correctamente';
+
+  @override
+  String get edit_event => 'Editar evento';
+
+  @override
+  String get event_updated_successfully => 'Evento actualizado correctamente';
 }

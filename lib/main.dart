@@ -1,23 +1,23 @@
-import 'package:enently/core/provider/config/provider.theme.dart';
-import 'package:enently/core/provider/config/provider_lang.dart';
- import 'package:enently/core/theme/app_theme/theme.dart';
-import 'package:enently/features/auth/register_screen.dart';
-import 'package:enently/firebase_options.dart';
-import 'package:enently/l10n/app_localizations.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
- import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+import 'package:enently/core/model/event_model.dart';
+import 'package:enently/core/theme/app_theme/theme.dart';
+import 'package:enently/features/home/tabs/add_event.dart';
+import 'package:enently/features/home/tabs/deatails_screen.dart';
+import 'package:enently/shared.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
+  await SharedPrefsHelper.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await StoreService.loadCurrentUser();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => LangProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
+        ChangeNotifierProvider(create: (_) => TabItemsProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()..loadUser()),
       ],
 
       child: MyApp(),
@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var themeProvider = Provider.of<ThemeProvider>(context);
-    var langProvider = Provider.of<LangProvider>(context);
+    final themeProvider = context.watch<ThemeProvider>();
+    final langProvider = context.watch<LangProvider>();
     return ScreenUtilInit(
       designSize: const Size(430, 932),
       minTextAdapt: true,
@@ -39,8 +39,29 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: RegisterScreen(),
+          initialRoute: AppRoutes.login,
+          routes: {
+            AppRoutes.login: (context) => LoginScreen(),
+            AppRoutes.register: (context) => RegisterScreen(),
+            AppRoutes.homeScreen: (context) => HomeScreen(),
+            AppRoutes.resetpassword: (context) => const ResestPassword(),
+            AppRoutes.confirmresetpassword: (context) =>
+                const ConfirmResetPassword(),
+            AppRoutes.createEvent: (context) {
+              final args = ModalRoute.of(context)?.settings.arguments;
+
+              final eventModel = args is EventModel ? args : null;
+
+              return AddEvent(eventModel: eventModel);
+            },
+            AppRoutes.deatailsScreen: (context) {
+              EventModel eventModel =
+                  ModalRoute.of(context)!.settings.arguments as EventModel;
+              return DeatailsScreen(eventModel: eventModel);
+            },
+          },
           theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
           themeMode: themeProvider.currentTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: [Locale('en'), Locale('ar'), Locale('es')],
