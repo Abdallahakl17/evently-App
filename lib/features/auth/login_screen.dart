@@ -83,6 +83,67 @@ class LoginScreen extends HookWidget {
       }
     }
 
+    Future<void> loginWithGoogle(BuildContext context) async {
+      try {
+        DialogUtils.showLoading(context, dismissible: false);
+
+        final userCredential = await AuthService.signInWithGoogle();
+
+        if (userCredential == null) {
+          Navigator.pop(context); // close loading
+          return;
+        }
+
+        final firebaseUser = userCredential.user!;
+        final isNewUser = userCredential.additionalUserInfo?.isNewUser ?? false;
+
+        if (isNewUser) {
+          final userModel = UserModel(
+            id: firebaseUser.uid,
+            name: firebaseUser.displayName ?? "",
+            email: firebaseUser.email ?? "",
+            favouriteEventsIds: [],
+          );
+
+          await StoreService.addUser(userModel);
+        }
+
+        final user = await StoreService.getUser(firebaseUser.uid);
+
+        if (user == null) {
+          Navigator.pop(context); // close loading
+
+          DialogUtils.showToastMessage(
+            message: "User data not found",
+            bgColor: Colors.red,
+          );
+          return;
+        }
+
+        if (!context.mounted) return;
+
+        context.read<UserProvider>()
+          ..clearUser()
+          ..setUser(user);
+
+        Navigator.pop(context); // close loading
+
+        DialogUtils.showToastMessage(
+          message: "Login successful",
+          bgColor: Colors.green,
+        );
+
+        Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
+      } catch (e) {
+        Navigator.pop(context); // close loading
+
+        DialogUtils.showToastMessage(
+          message: "Google sign-in failed",
+          bgColor: Colors.red,
+        );
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(AppImages.titleIamge, fit: BoxFit.contain),
@@ -177,7 +238,7 @@ class LoginScreen extends HookWidget {
                 SizedBox(height: 32.h),
                 SocialLoginSection(
                   onGoogleTap: () async {
-                    await AuthService.signInWithGoogle();
+                    await loginWithGoogle(context);
                   },
                   isLoiginScreen: true,
                 ),

@@ -1,4 +1,5 @@
 import 'package:enently/core/model/event_model.dart';
+import 'package:enently/core/theme/app_theme/theme.dart';
 import 'package:enently/features/home/tabs/add_event.dart';
 import 'package:enently/features/home/tabs/deatails_screen.dart';
 import 'package:enently/shared.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.homeScreen,
+          initialRoute: AppRoutes.login,
           routes: {
             AppRoutes.login: (context) => LoginScreen(),
             AppRoutes.register: (context) => RegisterScreen(),
@@ -46,20 +47,21 @@ class MyApp extends StatelessWidget {
             AppRoutes.resetpassword: (context) => const ResestPassword(),
             AppRoutes.confirmresetpassword: (context) =>
                 const ConfirmResetPassword(),
-            AppRoutes.createEvent: (context) { 
-              
-              EventModel? eventModel =
-                  ModalRoute.of(context)!.settings.arguments as EventModel;
+            AppRoutes.createEvent: (context) {
+              final args = ModalRoute.of(context)?.settings.arguments;
+
+              final eventModel = args is EventModel ? args : null;
+
               return AddEvent(eventModel: eventModel);
-            },   
+            },
             AppRoutes.deatailsScreen: (context) {
               EventModel eventModel =
                   ModalRoute.of(context)!.settings.arguments as EventModel;
               return DeatailsScreen(eventModel: eventModel);
             },
           },
-          theme: lightTheme,
-          darkTheme: darkTheme,
+          theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
           themeMode: themeProvider.currentTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: [Locale('en'), Locale('ar'), Locale('es')],

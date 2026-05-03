@@ -143,140 +143,142 @@ class AddEvent extends HookWidget {
       ),
       body: Form(
         key: formKey,
-        child: Padding(
-          padding: REdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16.r),
-                child: Image.asset(AppImagesLigth.meeting),
-              ),
-
-              SizedBox(height: 16.h),
-
-              CustomTabBarItems(
-                selectedIndex: selectedIndex.value,
-                categories: categories,
-                onCategoryItemClicked: (index, category) {
-                  selectedIndex.value = index;
-                  selectedCategory.value = category;
-                },
-              ),
-
-              SizedBox(height: 16.h),
-
-              Text(appLocalizations.title, style: textTheme.titleLarge),
-              SizedBox(height: 8.h),
-              CustomTextField(
-                validator: (value) => Validators.validateTitle(context, value),
-                controller: titleController,
-
-                hintText: appLocalizations.event_title,
-              ),
-
-              SizedBox(height: 16.h),
-
-              Text(appLocalizations.description, style: textTheme.titleLarge),
-              SizedBox(height: 8.h),
-              CustomTextField(
-                validator: (value) =>
-                    Validators.validateDescription(context, value),
-                controller: descController,
-                hintText: appLocalizations.event_description,
-                maxLines: 8,
-              ),
-
-              SizedBox(height: 16.h),
-
-              // DATE
-              Row(
-                children: [
-                  const Icon(Icons.date_range_outlined),
-                  SizedBox(width: 8.w),
-
-                  Text(
-                    selectedDateTime.value == null
-                        ? appLocalizations.event_date
-                        : "${selectedDateTime.value!.day}/${selectedDateTime.value!.month}/${selectedDateTime.value!.year}",
-                    style: textTheme.titleLarge,
-                  ),
-
-                  const Spacer(),
-
-                  InkWell(
-                    onTap: selectDate,
-                    child: Text(
-                      appLocalizations.choose_date,
-                      style: textTheme.labelSmall,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: REdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16.r),
+                  child: Image.asset(AppImagesLigth.meeting),
+                ),
+          
+                SizedBox(height: 16.h),
+          
+                CustomTabBarItems(
+                  selectedIndex: selectedIndex.value,
+                  categories: categories,
+                  onCategoryItemClicked: (index, category) {
+                    selectedIndex.value = index;
+                    selectedCategory.value = category;
+                  },
+                ),
+          
+                SizedBox(height: 16.h),
+          
+                Text(appLocalizations.title, style: textTheme.titleLarge),
+                SizedBox(height: 8.h),
+                CustomTextField(
+                  validator: (value) => Validators.validateTitle(context, value),
+                  controller: titleController,
+          
+                  hintText: appLocalizations.event_title,
+                ),
+          
+                SizedBox(height: 16.h),
+          
+                Text(appLocalizations.description, style: textTheme.titleLarge),
+                SizedBox(height: 8.h),
+                CustomTextField(
+                  validator: (value) =>
+                      Validators.validateDescription(context, value),
+                  controller: descController,
+                  hintText: appLocalizations.event_description,
+                  maxLines: 8,
+                ),
+          
+                SizedBox(height: 16.h),
+          
+                // DATE
+                Row(
+                  children: [
+                    const Icon(Icons.date_range_outlined),
+                    SizedBox(width: 8.w),
+          
+                    Text(
+                      selectedDateTime.value == null
+                          ? appLocalizations.event_date
+                          : "${selectedDateTime.value!.day}/${selectedDateTime.value!.month}/${selectedDateTime.value!.year}",
+                      style: textTheme.titleLarge,
                     ),
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 20.h),
-
-              // TIME
-              Row(
-                children: [
-                  const Icon(Icons.access_time),
-                  SizedBox(width: 8.w),
-
-                  Text(
-                    selectedTime.value == null
-                        ? appLocalizations.event_time
-                        : selectedTime.value!.format(context),
-                    style: textTheme.titleLarge,
-                  ),
-
-                  const Spacer(),
-
-                  InkWell(
-                    onTap: selectTime,
-                    child: Text(
-                      appLocalizations.choose_time,
-                      style: textTheme.labelSmall,
+          
+                    const Spacer(),
+          
+                    InkWell(
+                      onTap: selectDate,
+                      child: Text(
+                        appLocalizations.choose_date,
+                        style: textTheme.labelSmall,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-
-              const Spacer(),
-
-              AppCustomButton(
-                text: eventModel == null
-                    ? appLocalizations.add_event
-                    : appLocalizations.edit_event,
-                onPressed: () async {
-                  if (formKey.currentState!.validate()) {
-                    if (selectedDateTime.value == null) {
-                      DialogUtils.showSnackBar(
-                        context,
-                        appLocalizations.please_choose_date,
-                        backgroundColor: colors.error,
-                      );
-                      return;
+                  ],
+                ),
+          
+                SizedBox(height: 20.h),
+          
+                // TIME
+                Row(
+                  children: [
+                    const Icon(Icons.access_time),
+                    SizedBox(width: 8.w),
+          
+                    Text(
+                      selectedTime.value == null
+                          ? appLocalizations.event_time
+                          : selectedTime.value!.format(context),
+                      style: textTheme.titleLarge,
+                    ),
+          
+                    const Spacer(),
+          
+                    InkWell(
+                      onTap: selectTime,
+                      child: Text(
+                        appLocalizations.choose_time,
+                        style: textTheme.labelSmall,
+                      ),
+                    ),
+                  ],
+                ),
+          
+              SizedBox(height: 40.h),
+          
+                AppCustomButton(
+                  text: eventModel == null
+                      ? appLocalizations.add_event
+                      : appLocalizations.edit_event,
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      if (selectedDateTime.value == null) {
+                        DialogUtils.showSnackBar(
+                          context,
+                          appLocalizations.please_choose_date,
+                          backgroundColor: colors.error,
+                        );
+                        return;
+                      }
+          
+                      if (selectedTime.value == null) {
+                        DialogUtils.showSnackBar(
+                          context,
+                          appLocalizations.please_choose_time,
+                          backgroundColor: colors.error,
+                        );
+          
+                        return;
+                      }
+          
+                      if (eventModel == null) {
+                        await addEvent();
+                      } else {
+                        await updateEvent();
+                      }
                     }
-
-                    if (selectedTime.value == null) {
-                      DialogUtils.showSnackBar(
-                        context,
-                        appLocalizations.please_choose_time,
-                        backgroundColor: colors.error,
-                      );
-
-                      return;
-                    }
-
-                    if (eventModel == null) {
-                      await addEvent();
-                    } else {
-                      await updateEvent();
-                    }
-                  }
-                },
-              ),
-            ],
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

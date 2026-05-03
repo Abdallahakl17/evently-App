@@ -55,6 +55,8 @@ class AuthService {
 
   static Future<void> signOut() async {
     await auth.signOut();
+    await _googleSignIn.signOut();
+
     log("Logged out");
   }
 }
